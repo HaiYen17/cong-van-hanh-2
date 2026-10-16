@@ -1,0 +1,108 @@
+.header {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px 22px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  border-radius: var(--ui-card-radius);
+  background:
+    linear-gradient(
+      115deg,
+      color-mix(in srgb, var(--accent-soft) 54%, var(--surface)),
+      color-mix(in srgb, var(--surface) 96%, var(--background)) 62%
+    );
+  box-shadow: var(--ui-surface-shadow);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -92px;
+  top: -112px;
+  border: 28px solid color-mix(in srgb, var(--accent) 8%, transparent);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: min(var(--ui-card-radius), 16px);
+  color: var(--brand-button-color);
+  background: var(--brand-button-background);
+  box-shadow: var(--ui-button-shadow);
+}
+
+.icon svg {
+  width: 27px;
+  height: 27px;
+  stroke-width: 2.1;
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-strong);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.075em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.eyebrow svg {
+  flex: 0 0 auto;
+}
+
+.title {
+  margin: 4px 0 0;
+  color: var(--text);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(1.65rem, 3vw, 2.15rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .header {
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .icon svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .eyebrow {
+    font-size: 0.64rem;
+  }
+
+  .title {
+    font-size: clamp(1.35rem, 8vw, 1.72rem);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "crons": [
+    { "path": "/api/cron/personnel-sync?mode=interval", "schedule": "*/30 * * * *" },
+    { "path": "/api/cron/personnel-sync?mode=snapshot", "schedule": "0 0 * * *" },
+    { "path": "/api/cron/todo-recurrence", "schedule": "*/15 * * * *" },
+    { "path": "/api/cron/digital-signature", "schedule": "* * * * *" }
+  ]
+}

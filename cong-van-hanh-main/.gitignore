@@ -1,0 +1,68 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+**/node_modules/
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# Python environments and bytecode
+**/.venv/
+**/__pycache__/
+*.py[cod]
+
+# next.js
+/.next/
+/.next-*/
+/.next-stale-*/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dev-server*.log
+cloud-sql-proxy*.log
+.codex-*.log
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+/src/generated/prisma
+
+# Local read-only migration snapshots. These files can contain personal data.
+/prisma/import-cache/
+
+# Local Codex workspaces, QA artifacts, generated output, and temporary logs.
+/.codex_tmp/
+/.tmp/
+/tmp/
+/output/
+/outputs/
+/tmp-*.log
+/tmp-*.out
+/tmp-*.pid

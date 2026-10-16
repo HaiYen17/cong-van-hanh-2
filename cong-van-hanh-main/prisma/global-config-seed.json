@@ -1,0 +1,461 @@
+{
+  "source": {
+    "spreadsheetId": "1_aDstrpRuxLuaEKHTuuWuL3ybyBvCPVcyFMouQxVjyg",
+    "sheetName": "97_Cấu hình tổng",
+    "sheetId": 1631014268,
+    "range": "A1:AO100",
+    "capturedAt": "2026-07-24T08:30:00.000Z"
+  },
+  "records": [
+    {
+      "rowNumber": 2,
+      "externalId": "vtp-d70fcf8e39b44ec1b5",
+      "entityType": "ViettelPostAccount",
+      "data": {
+        "name": "[TVD] - ViettelPost | Kho Long An",
+        "env": "PROD",
+        "username": "0707174507",
+        "companyScope": ["Thuần Việt Digital"],
+        "departmentScope": ["Phòng Kho vận"],
+        "note": "Dùng riêng cho Kho Thuần Việt Digital",
+        "status": "ACTIVE",
+        "createdAt": "2026-05-08T00:57:26.000Z",
+        "updatedAt": "2026-05-14T04:19:51.000Z"
+      },
+      "missingSecrets": ["password", "token", "dashboardToken"]
+    },
+    {
+      "rowNumber": 3,
+      "externalId": "cfg-aa6c2c6bb74840718a",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "config.motivationImageFolderId",
+        "label": "Folder hình nền dashboard",
+        "configType": "folder",
+        "tag": "Cấu hình",
+        "value": "1o_fLObqaf2P3Yp9It9g3irABjaQuYfQv",
+        "createdAt": "2026-05-08T01:54:05.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 4,
+      "externalId": "cfg-440f32faeabc4bb2b8",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "appSetup.supportToolDriveFolderId",
+        "label": "Folder kho ứng dụng",
+        "configType": "folder",
+        "tag": "Setup ứng dụng",
+        "value": "15BnrG6NJyWmeLtnEC2DU9VzI3lprRI-x",
+        "createdAt": "2026-05-08T01:54:06.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 5,
+      "externalId": "cfg-8cb3985784c34c50a9",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "assetSetup.rootFolderId",
+        "label": "Folder lưu trữ tài sản",
+        "configType": "folder",
+        "tag": "Setup tài sản",
+        "value": "1OofWQmQGQIFfFXs-tn1zEtX0SX_RCxiD",
+        "createdAt": "2026-05-08T01:54:07.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 6,
+      "externalId": "cfg-038bcf47d5414b8c86",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "assetSetup.imageFolderId",
+        "label": "Folder hình CCDC/tài sản",
+        "configType": "folder",
+        "tag": "Setup tài sản",
+        "value": "1AfisZ1aUBkf3aUhSlx5u8errWsiRf63x",
+        "createdAt": "2026-05-08T01:54:07.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 7,
+      "externalId": "cfg-a0dea39611ed4a05b4",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "assetSetup.stationeryFolderId",
+        "label": "Folder Văn phòng phẩm",
+        "configType": "folder",
+        "tag": "Setup tài sản",
+        "value": "1tJPcJjSst6ZXfVLFzyX4E_61MFS-SOXr",
+        "createdAt": "2026-05-08T01:54:07.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 8,
+      "externalId": "cfg-5e5669082c6147358d",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "assetSetup.uniformFolderId",
+        "label": "Folder Đồng phục",
+        "configType": "folder",
+        "tag": "Setup tài sản",
+        "value": "1JNgKYwUICSRsVQW2gs4gcqQeBYY6-pgO",
+        "createdAt": "2026-05-08T01:54:08.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 9,
+      "externalId": "cfg-71af0447e173423fb2",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "assetSetup.backgroundWorkerUrl",
+        "label": "URL worker Python xử lý nền",
+        "configType": "url",
+        "tag": "Setup tài sản",
+        "value": "https://decidable-pushup-scenic.ngrok-free.dev/remove-background",
+        "createdAt": "2026-05-08T01:54:08.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 10,
+      "externalId": "cfg-f8ebfe2669ba4fce9c",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "assetSetup.backgroundWorkerSecret",
+        "label": "Secret worker Python",
+        "configType": "secret",
+        "tag": "Setup tài sản",
+        "value": null,
+        "createdAt": "2026-05-08T01:54:09.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": ["value"]
+    },
+    {
+      "rowNumber": 11,
+      "externalId": "cfg-1e2e487694bd4098a8",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "ai.assetGeminiApiKey",
+        "label": "Gemini API key - Setup tài sản",
+        "configType": "secret",
+        "tag": "AI",
+        "value": null,
+        "createdAt": "2026-05-08T01:54:09.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": ["value"]
+    },
+    {
+      "rowNumber": 12,
+      "externalId": "cfg-503c39694a784dbda6",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "ai.assetGeminiModel",
+        "label": "Gemini model - Setup tài sản",
+        "configType": "text",
+        "tag": "AI",
+        "value": "gemini-2.5-flash",
+        "createdAt": "2026-05-08T01:54:09.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 13,
+      "externalId": "cfg-e19de7a6a8a2436a8d",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "ai.reviewGeminiApiKey",
+        "label": "Gemini API key - Bộ nguyên tắc AI",
+        "configType": "secret",
+        "tag": "AI",
+        "value": null,
+        "createdAt": "2026-05-08T01:54:10.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 14,
+      "externalId": "cfg-1faaa241c14a47e9b1",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "ai.reviewGeminiModel",
+        "label": "Gemini model - Bộ nguyên tắc AI",
+        "configType": "text",
+        "tag": "AI",
+        "value": "gemini-2.5-flash",
+        "createdAt": "2026-05-08T01:54:10.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 15,
+      "externalId": "cfg-e0cee718ea694c2695",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "ai.reviewContractFolderId",
+        "label": "Folder Review hợp đồng AI",
+        "configType": "folder",
+        "tag": "AI",
+        "value": "1fohr5wRdFvsNBmy_Wjdad8KvvZVNVzc7",
+        "createdAt": "2026-05-08T01:54:11.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 16,
+      "externalId": "cfg-f73c9acbfdf444daa4",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "legal.companyStorageRootFolderId",
+        "label": "Folder gốc hồ sơ công ty",
+        "configType": "folder",
+        "tag": "Hồ sơ pháp lý",
+        "value": "13QbdtXSOByd4tySXmippz-CDL1HRU3-5",
+        "createdAt": "2026-05-08T01:54:11.000Z",
+        "updatedAt": "2026-05-08T01:59:48.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 17,
+      "externalId": "vtp-e7b74cacaa694d9a94",
+      "entityType": "ViettelPostAccount",
+      "data": {
+        "name": "[TVG] - ViettelPost | VP Quận 12 và CH",
+        "env": "PROD",
+        "username": "0937451863",
+        "companyScope": ["Night Dream", "Thuần Việt Digital", "Thuần Việt Global"],
+        "departmentScope": ["Ban giám đốc", "Phòng Kiến tạo nhân sự", "Phòng Kinh doanh", "Phòng Kinh doanh số 1", "Phòng Kinh doanh số 2", "Phòng Kinh doanh số 3", "Phòng Marketing & Brand", "Phòng Tài chính - Kế toán"],
+        "note": null,
+        "status": "ACTIVE",
+        "createdAt": "2026-05-08T07:49:03.000Z",
+        "updatedAt": "2026-05-10T12:52:08.000Z"
+      },
+      "missingSecrets": ["password", "token", "dashboardToken"]
+    },
+    {
+      "rowNumber": 18,
+      "externalId": "cfg-5c3635c236b346a9af",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "warehouseReport.workerUrl",
+        "label": "URL worker Python Báo cáo Kho",
+        "configType": "url",
+        "tag": "AI",
+        "value": "https://script.google.com/macros/s/AKfycbwlJvjq36scGVaKZHY0xsilmmnMg4POYA-yfVTAtt5D_XvSgEVBvm6UdghSxG6SnIk/exec",
+        "createdAt": "2026-05-10T09:52:07.000Z",
+        "updatedAt": "2026-05-10T09:52:07.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 19,
+      "externalId": "cfg-02ea654fad2046bf91",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "warehouseReport.workerSecret",
+        "label": "Secret worker Báo cáo Kho",
+        "configType": "secret",
+        "tag": "AI",
+        "value": null,
+        "createdAt": "2026-05-10T09:52:39.000Z",
+        "updatedAt": "2026-05-10T09:52:39.000Z"
+      },
+      "missingSecrets": ["value"]
+    },
+    {
+      "rowNumber": 20,
+      "externalId": "eshop-c375dbf89f8146a7a9",
+      "entityType": "EshopAccount",
+      "data": {
+        "name": "[TVG] - Eshop",
+        "companyKey": "TVG",
+        "companyName": "Thuần Việt Global",
+        "companyScope": ["Thuần Việt Global"],
+        "departmentScope": ["Ban giám đốc", "Phòng Kho vận", "Phòng Kiến tạo nhân sự", "Phòng Tài chính - Kế toán"],
+        "webBaseUrl": "https://nemthuanviet.mshopkeeper.vn",
+        "webCompanyCode": "nemthuanviet",
+        "apiDomain": "nemthuanviet.mshopkeeper.vn",
+        "apiAppId": null,
+        "branchId": "00000000-0000-0000-0000-000000000000",
+        "language": "vi-VN",
+        "backendSpreadsheetId": "1rlCZxa1JqsAfKRskbIZsLtRufLx6BckijCWLaodDm2k",
+        "orderSheetName": "Dữ liệu đơn TVG",
+        "inventorySheetName": "Dữ liệu kho TVG",
+        "note": null,
+        "status": "ACTIVE",
+        "createdAt": "2026-05-10T12:10:56.000Z",
+        "updatedAt": "2026-05-10T12:10:56.000Z"
+      },
+      "missingSecrets": ["webBearer"]
+    },
+    {
+      "rowNumber": 21,
+      "externalId": "eshop-0abe0dc586e74e45ae",
+      "entityType": "EshopAccount",
+      "data": {
+        "name": "[TVD] - Eshop",
+        "companyKey": "TVD",
+        "companyName": "Thuần Việt Digital",
+        "companyScope": ["Thuần Việt Digital"],
+        "departmentScope": ["Ban giám đốc", "Phòng Kho vận", "Phòng Kiến tạo nhân sự", "Phòng Tài chính - Kế toán"],
+        "webBaseUrl": "https://thuanvietdigital.mshopkeeper.vn",
+        "webCompanyCode": "thuanvietdigital",
+        "apiDomain": "thuanvietdigital.mshopkeeper.vn",
+        "apiAppId": null,
+        "branchId": "00000000-0000-0000-0000-000000000000",
+        "language": "vi-VN",
+        "backendSpreadsheetId": "1rlCZxa1JqsAfKRskbIZsLtRufLx6BckijCWLaodDm2k",
+        "orderSheetName": "Dữ liệu đơn TVD",
+        "inventorySheetName": "Dữ liệu kho TVD",
+        "note": null,
+        "status": "ACTIVE",
+        "createdAt": "2026-05-10T12:20:26.000Z",
+        "updatedAt": "2026-05-10T12:20:26.000Z"
+      },
+      "missingSecrets": ["webBearer"]
+    },
+    {
+      "rowNumber": 22,
+      "externalId": "cfg-0e0e98e86f9b4d1b97",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "eshopDataLake.rootFolderId",
+        "label": "Eshop - Folder tổng dữ liệu",
+        "configType": "folder",
+        "tag": "Folder Lưu trữ",
+        "value": "1q2sTDcg-GW1uI9OHEt2b9LWDYE8j2r3A",
+        "createdAt": "2026-05-10T14:53:53.000Z",
+        "updatedAt": "2026-05-10T14:53:53.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 23,
+      "externalId": "cfg-916031889a724b6da7",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "eshopDataLake.rawOrdersFolderId",
+        "label": "Eshop - Folder raw đơn hàng",
+        "configType": "folder",
+        "tag": "Folder Lưu trữ",
+        "value": "1sWkW_02zwsvMAyCgFgayWoplB_-D10fW",
+        "createdAt": "2026-05-10T14:56:03.000Z",
+        "updatedAt": "2026-05-10T14:56:03.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 24,
+      "externalId": "cfg-97c274db78ec41c190",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "eshopDataLake.snapshotFolderId",
+        "label": "Eshop - Folder snapshot báo cáo",
+        "configType": "folder",
+        "tag": "Folder Lưu trữ",
+        "value": "1RyczMtJ7y69a7x1zII82uhaCiB9tmb1O",
+        "createdAt": "2026-05-10T15:13:02.000Z",
+        "updatedAt": "2026-05-10T15:13:02.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 25,
+      "externalId": "cfg-d071b2a5cb0a49f182",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "warehouseKts.androidApiKey",
+        "label": "Android RFID API key",
+        "configType": "secret",
+        "tag": "Kho KTS / RFID",
+        "value": null,
+        "createdAt": "2026-05-15T06:01:30.000Z",
+        "updatedAt": "2026-05-15T06:01:30.000Z"
+      },
+      "missingSecrets": ["value"]
+    },
+    {
+      "rowNumber": 26,
+      "externalId": "vtp-c113b16d97474c8797",
+      "entityType": "ViettelPostAccount",
+      "data": {
+        "name": "[TVG] - ViettelPost | Kho Long An",
+        "env": "PROD",
+        "username": "0374819942",
+        "companyScope": ["Thuần Việt Global"],
+        "departmentScope": ["Phòng Kho vận"],
+        "note": null,
+        "status": "ACTIVE",
+        "createdAt": "2026-06-30T03:20:55.000Z",
+        "updatedAt": "2026-06-30T03:20:55.000Z"
+      },
+      "missingSecrets": ["password", "dashboardToken"]
+    },
+    {
+      "rowNumber": 27,
+      "externalId": "vtp-e20899f2d208425580",
+      "entityType": "ViettelPostAccount",
+      "data": {
+        "name": "[NTC] - ViettelPosst | Xưởng sản xuất",
+        "env": "PROD",
+        "username": "0559134339",
+        "companyScope": ["Nệm Thành Công"],
+        "departmentScope": ["Phòng Kho vận", "Phòng Sản xuất"],
+        "note": null,
+        "status": "ACTIVE",
+        "createdAt": "2026-06-30T03:35:01.000Z",
+        "updatedAt": "2026-06-30T03:35:01.000Z"
+      },
+      "missingSecrets": ["password", "dashboardToken"]
+    },
+    {
+      "rowNumber": 28,
+      "externalId": "cfg-9bcd4483e04447feb7",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "accountingData.workerUrl",
+        "label": "Địa chỉ bộ xử lý dữ liệu Kế toán",
+        "configType": "url",
+        "tag": "Kế toán",
+        "value": "https://thuanviet-accounting-worker-866256624587.asia-southeast1.run.app",
+        "createdAt": "2026-07-21T04:16:20.000Z",
+        "updatedAt": "2026-07-21T07:42:57.000Z"
+      },
+      "missingSecrets": []
+    },
+    {
+      "rowNumber": 29,
+      "externalId": "cfg-93ee0c3a476444599f",
+      "entityType": "SystemSetting",
+      "data": {
+        "key": "accountingData.workerSecret",
+        "label": "Mã bảo vệ bộ xử lý dữ liệu Kế toán",
+        "configType": "secret",
+        "tag": "Kế toán",
+        "value": null,
+        "createdAt": "2026-07-21T04:16:31.000Z",
+        "updatedAt": "2026-07-21T04:16:31.000Z"
+      },
+      "missingSecrets": ["value"]
+    }
+  ]
+}

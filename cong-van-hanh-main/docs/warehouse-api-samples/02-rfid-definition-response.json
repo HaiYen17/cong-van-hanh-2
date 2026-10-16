@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "accepted": true,
+  "action": "warehouseDefineRfidBatch",
+  "sessionId": "android-def-20260728-163000-001",
+  "createdCount": 2,
+  "skippedCount": 0,
+  "errorCount": 0,
+  "errors": [],
+  "message": "Đã phát hành 2 RFID."
+}

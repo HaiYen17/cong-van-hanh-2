@@ -1,0 +1,639 @@
+export const warehouseApiContract = {
+  openapi: "3.1.0",
+  info: {
+    title: "Thuần Việt Warehouse RFID API",
+    version: "2026-07-28",
+    description:
+      "Hợp đồng JSON chính thức cho Cấu hình Kho, Thông tin kho và Kiểm kê Kho. Thời gian dùng ISO 8601 có múi giờ; EPC viết hoa và không chứa khoảng trắng.",
+  },
+  servers: [
+    {
+      url: "https://thuanvietgroup.biz.vn",
+      description: "Google Cloud Run production",
+    },
+  ],
+  tags: [
+    { name: "Đăng nhập ứng dụng" },
+    { name: "Cấu hình Kho" },
+    { name: "Thông tin kho" },
+    { name: "Kiểm kê Kho" },
+  ],
+  paths: {
+    "/api/mobile/auth/employees": {
+      get: {
+        tags: ["Đăng nhập ứng dụng"],
+        operationId: "mobileLoginEmployees",
+        summary: "Lấy danh sách nhân sự được phép đăng nhập",
+        description: "Không trả mật khẩu hoặc passwordHash.",
+        security: [{ apiKeyHeader: [] }],
+        responses: {
+          "200": {
+            description: "Danh sách nhân sự đang hoạt động.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/EmployeeDirectoryResponse" },
+              },
+            },
+          },
+          "401": { $ref: "#/components/responses/Unauthorized" },
+        },
+      },
+    },
+    "/api/mobile/auth/login": {
+      post: {
+        tags: ["Đăng nhập ứng dụng"],
+        operationId: "mobileLogin",
+        summary: "Đăng nhập và nhận access token",
+        security: [{ apiKeyHeader: [] }],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/MobileLoginRequest" },
+            },
+          },
+        },
+        responses: {
+          "200": {
+            description: "Đăng nhập thành công.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/MobileLoginResponse" },
+              },
+            },
+          },
+          "401": { $ref: "#/components/responses/Unauthorized" },
+          "428": {
+            description: "Tài khoản cần tạo mật khẩu lần đầu.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/ErrorResponse" },
+              },
+            },
+          },
+        },
+      },
+    },
+    "/api/mobile/auth/me": {
+      get: {
+        tags: ["Đăng nhập ứng dụng"],
+        operationId: "mobileMe",
+        summary: "Lấy hồ sơ và quyền của người đang đăng nhập",
+        security: [{ apiKeyHeader: [], bearerAuth: [] }],
+        responses: {
+          "200": {
+            description: "Hồ sơ phiên hiện tại.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/MobileProfileResponse" },
+              },
+            },
+          },
+          "401": { $ref: "#/components/responses/Unauthorized" },
+        },
+      },
+    },
+    "/api/mobile/auth/logout": {
+      post: {
+        tags: ["Đăng nhập ứng dụng"],
+        operationId: "mobileLogout",
+        summary: "Thu hồi access token",
+        security: [{ apiKeyHeader: [], bearerAuth: [] }],
+        responses: {
+          "200": { description: "Đã đăng xuất." },
+          "401": { $ref: "#/components/responses/Unauthorized" },
+        },
+      },
+    },
+    "/api/warehouse/catalog": {
+      get: {
+        tags: ["Cấu hình Kho"],
+        operationId: "warehouseCatalogLookupGet",
+        summary: "Tra cứu hoặc đồng bộ danh mục SKU/Barcode",
+        security: [{ bearerAuth: [] }, { apiKeyHeader: [] }],
+        parameters: [
+          { name: "barcode", in: "query", schema: { type: "string" } },
+          { name: "sku", in: "query", schema: { type: "string" } },
+          { name: "query", in: "query", schema: { type: "string" } },
+          {
+            name: "updatedAfter",
+            in: "query",
+            description: "Chỉ lấy SKU cập nhật sau mốc ISO 8601 này.",
+            schema: { type: "string", format: "date-time" },
+          },
+          {
+            name: "page",
+            in: "query",
+            schema: { type: "integer", minimum: 1, default: 1 },
+          },
+          {
+            name: "limit",
+            in: "query",
+            schema: {
+              type: "integer",
+              minimum: 1,
+              maximum: 500,
+              default: 100,
+            },
+          },
+        ],
+        responses: {
+          "200": {
+            description: "Danh mục SKU phù hợp.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/CatalogLookupResponse" },
+              },
+            },
+          },
+          "401": { $ref: "#/components/responses/Unauthorized" },
+        },
+      },
+    },
+    "/api/warehouse/rfid": {
+      get: {
+        operationId: "warehouseRfidHealth",
+        summary: "Kiểm tra đầu nhận và phiên bản contract",
+        responses: {
+          "200": {
+            description: "Đầu nhận sẵn sàng.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/HealthResponse" },
+              },
+            },
+          },
+        },
+      },
+      post: {
+        operationId: "warehouseAction",
+        summary: "Gửi action Kho vận",
+        description:
+          "App mới gửi X-API-Key và access token người dùng bằng Authorization: Bearer. apiKey trong body hoặc Bearer chứa API key chỉ giữ để tương thích APK cũ. Giữ nguyên sessionId khi retry.",
+        security: [
+          { apiKeyHeader: [], bearerAuth: [] },
+          { bearerAuth: [] },
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                oneOf: [
+                  { $ref: "#/components/schemas/CatalogLookupRequest" },
+                  { $ref: "#/components/schemas/RfidSearchRequest" },
+                  { $ref: "#/components/schemas/RfidDefinitionRequest" },
+                  { $ref: "#/components/schemas/InventoryScanRequest" },
+                ],
+                discriminator: { propertyName: "action" },
+              },
+            },
+          },
+        },
+        responses: {
+          "200": {
+            description: "Action đã được xử lý; kiểm tra thêm trường ok.",
+            content: {
+              "application/json": {
+                schema: {
+                  oneOf: [
+                    { $ref: "#/components/schemas/CatalogLookupResponse" },
+                    { $ref: "#/components/schemas/RfidSearchResponse" },
+                    { $ref: "#/components/schemas/RfidDefinitionResponse" },
+                    { $ref: "#/components/schemas/InventoryScanResponse" },
+                  ],
+                },
+              },
+            },
+          },
+          "400": { $ref: "#/components/responses/BadRequest" },
+          "401": { $ref: "#/components/responses/Unauthorized" },
+          "413": {
+            description: "JSON vượt quá 2 MB.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/ErrorResponse" },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        description:
+          "Access token người dùng. APK cũ có thể tiếp tục gửi API key tại đây để tương thích.",
+      },
+      apiKeyHeader: {
+        type: "apiKey",
+        in: "header",
+        name: "X-API-Key",
+        description: "Khóa ứng dụng; bắt buộc với app mới.",
+      },
+    },
+    responses: {
+      BadRequest: {
+        description: "Payload không hợp lệ.",
+        content: {
+          "application/json": {
+            schema: { $ref: "#/components/schemas/ErrorResponse" },
+          },
+        },
+      },
+      Unauthorized: {
+        description: "Thiếu hoặc sai API key.",
+        content: {
+          "application/json": {
+            schema: { $ref: "#/components/schemas/ErrorResponse" },
+          },
+        },
+      },
+    },
+    schemas: {
+      EmployeeLoginItem: {
+        type: "object",
+        required: [
+          "employeeId",
+          "employeeCode",
+          "fullName",
+          "requiresPassword",
+          "hasPassword",
+        ],
+        properties: {
+          employeeId: { type: "string" },
+          employeeCode: { type: "string", example: "2411301" },
+          fullName: { type: "string", example: "Nguyễn Minh Thông" },
+          department: { type: "string" },
+          title: { type: "string" },
+          companyCode: { type: "string" },
+          companyName: { type: "string" },
+          requiresPassword: { type: "boolean" },
+          hasPassword: { type: "boolean" },
+        },
+      },
+      EmployeeDirectoryResponse: {
+        type: "object",
+        required: ["ok", "employees", "generatedAt"],
+        properties: {
+          ok: { type: "boolean", const: true },
+          generatedAt: { type: "string", format: "date-time" },
+          employees: {
+            type: "array",
+            items: { $ref: "#/components/schemas/EmployeeLoginItem" },
+          },
+        },
+      },
+      MobileLoginRequest: {
+        type: "object",
+        properties: {
+          employeeId: { type: "string" },
+          employeeCode: { type: "string" },
+          password: { type: "string", format: "password" },
+          newPassword: { type: "string", format: "password" },
+          confirmPassword: { type: "string", format: "password" },
+          deviceId: { type: "string" },
+          deviceName: { type: "string" },
+        },
+        anyOf: [{ required: ["employeeId"] }, { required: ["employeeCode"] }],
+      },
+      MobileProfile: {
+        type: "object",
+        required: [
+          "userId",
+          "employeeId",
+          "employeeCode",
+          "displayName",
+          "roles",
+          "permissions",
+          "modules",
+          "moduleGroups",
+        ],
+        properties: {
+          userId: { type: "string" },
+          employeeId: { type: "string" },
+          employeeCode: { type: "string" },
+          displayName: { type: "string" },
+          department: { type: "string" },
+          title: { type: "string" },
+          company: {
+            type: "object",
+            properties: {
+              code: { type: "string" },
+              name: { type: "string" },
+            },
+          },
+          roles: { type: "array", items: { type: "string" } },
+          permissions: { type: "array", items: { type: "string" } },
+          modules: { type: "array", items: { type: "string" } },
+          moduleGroups: { type: "array", items: { type: "string" } },
+          fullAccess: { type: "boolean" },
+        },
+      },
+      MobileLoginResponse: {
+        type: "object",
+        required: [
+          "ok",
+          "accessToken",
+          "tokenType",
+          "expiresAt",
+          "profile",
+        ],
+        properties: {
+          ok: { type: "boolean", const: true },
+          accessToken: { type: "string" },
+          tokenType: { type: "string", const: "Bearer" },
+          expiresAt: { type: "string", format: "date-time" },
+          profile: { $ref: "#/components/schemas/MobileProfile" },
+        },
+      },
+      MobileProfileResponse: {
+        type: "object",
+        required: ["ok", "profile"],
+        properties: {
+          ok: { type: "boolean", const: true },
+          profile: { $ref: "#/components/schemas/MobileProfile" },
+        },
+      },
+      HealthResponse: {
+        type: "object",
+        required: ["ok", "actions", "contractVersion"],
+        properties: {
+          ok: { type: "boolean", const: true },
+          actions: {
+            type: "array",
+            items: { type: "string" },
+          },
+          contractVersion: { type: "string", example: "2026-07-28" },
+          documentationUrl: { type: "string", format: "uri" },
+          catalogUrl: { type: "string", format: "uri" },
+        },
+      },
+      ErrorResponse: {
+        type: "object",
+        required: ["ok", "message"],
+        properties: {
+          ok: { type: "boolean", const: false },
+          error: { type: "string" },
+          message: { type: "string" },
+        },
+      },
+      WarehouseProduct: {
+        type: "object",
+        required: ["sku", "barcode", "name", "status", "updatedAt"],
+        properties: {
+          sku: { type: "string", example: "NTV-GOI-001" },
+          barcode: { type: "string", example: "8938500000012" },
+          name: { type: "string", example: "Gối nằm Thuần Việt" },
+          unit: { type: "string", example: "Cái" },
+          color: { type: "string" },
+          size: { type: "string" },
+          status: { type: "string", example: "ACTIVE" },
+          rfidCount: { type: "integer", minimum: 0 },
+          updatedAt: { type: "string", format: "date-time" },
+        },
+      },
+      CatalogLookupRequest: {
+        type: "object",
+        required: ["action"],
+        properties: {
+          action: { type: "string", const: "warehouseCatalogLookup" },
+          barcode: { type: "string" },
+          sku: { type: "string" },
+          query: { type: "string" },
+          updatedAfter: { type: "string", format: "date-time" },
+          page: { type: "integer", minimum: 1, default: 1 },
+          limit: { type: "integer", minimum: 1, maximum: 500, default: 100 },
+        },
+      },
+      CatalogLookupResponse: {
+        type: "object",
+        required: ["ok", "action", "products", "pagination"],
+        properties: {
+          ok: { type: "boolean", const: true },
+          action: { type: "string", const: "warehouseCatalogLookup" },
+          generatedAt: { type: "string", format: "date-time" },
+          products: {
+            type: "array",
+            items: { $ref: "#/components/schemas/WarehouseProduct" },
+          },
+          pagination: {
+            type: "object",
+            required: ["page", "limit", "total", "totalPages", "hasMore"],
+            properties: {
+              page: { type: "integer" },
+              limit: { type: "integer" },
+              total: { type: "integer" },
+              totalPages: { type: "integer" },
+              hasMore: { type: "boolean" },
+            },
+          },
+        },
+      },
+      RfidSearchRequest: {
+        type: "object",
+        required: ["action", "query"],
+        properties: {
+          action: { type: "string", const: "warehouseRfidSearch" },
+          query: {
+            type: "string",
+            description: "Tên hàng, SKU, Barcode hoặc EPC cần tìm.",
+          },
+          limit: { type: "integer", minimum: 1, maximum: 500, default: 100 },
+        },
+      },
+      RfidSearchResponse: {
+        type: "object",
+        required: ["ok", "action", "query", "options", "total", "truncated"],
+        properties: {
+          ok: { type: "boolean", const: true },
+          action: { type: "string", const: "warehouseRfidSearch" },
+          query: { type: "string" },
+          status: { type: "string", const: "ACTIVE" },
+          total: { type: "integer", minimum: 0 },
+          truncated: { type: "boolean" },
+          generatedAt: { type: "string", format: "date-time" },
+          options: {
+            type: "array",
+            items: {
+              type: "object",
+              required: ["rfid", "epc", "sku", "name", "status", "issuanceStatus"],
+              properties: {
+                rfid: { type: "string" },
+                epc: { type: "string" },
+                sku: { type: "string" },
+                name: { type: "string" },
+                barcode: { type: "string" },
+                status: { type: "string" },
+                issuanceStatus: { type: "string", const: "ACTIVE" },
+                entryDate: { type: "string", format: "date-time" },
+                issuedAt: { type: "string", format: "date-time" },
+              },
+            },
+          },
+        },
+      },
+      RfidDefinitionRequest: {
+        type: "object",
+        required: ["action", "sessionId", "rfids", "issuanceStatus"],
+        properties: {
+          action: { type: "string", const: "warehouseDefineRfidBatch" },
+          sessionId: {
+            type: "string",
+            maxLength: 180,
+            description:
+              "Khóa idempotency và khóa cộng dồn phiên. Khi chia nhiều batch (Android tối đa 100 EPC/request), giữ nguyên sessionId; backend hợp nhất EPC và retry không nhân đôi.",
+          },
+          sku: {
+            type: "string",
+            description: "Bắt buộc khi Kích hoạt nếu không có barcode.",
+          },
+          barcode: {
+            type: "string",
+            description: "Bắt buộc khi Kích hoạt nếu không có SKU.",
+          },
+          rfids: {
+            type: "array",
+            minItems: 1,
+            maxItems: 10000,
+            uniqueItems: true,
+            items: { type: "string" },
+          },
+          issuanceStatus: {
+            type: "string",
+            enum: ["ACTIVE", "CANCELLED"],
+          },
+          expectedQty: { type: "integer", minimum: 1 },
+          operator: { type: "string" },
+          deviceName: { type: "string" },
+          createdAt: { type: "string", format: "date-time" },
+          activatedAt: { type: "string", format: "date-time" },
+          cancelledAt: { type: "string", format: "date-time" },
+          cancelledBy: { type: "string" },
+          scanPower: { type: "integer" },
+          scanRangeHint: { type: "string" },
+          source: { type: "string", default: "Android/RFID" },
+        },
+      },
+      RfidDefinitionResponse: {
+        type: "object",
+        required: [
+          "ok",
+          "action",
+          "sessionId",
+          "createdCount",
+          "skippedCount",
+          "errorCount",
+        ],
+        properties: {
+          ok: { type: "boolean" },
+          accepted: { type: "boolean" },
+          action: { type: "string", const: "warehouseDefineRfidBatch" },
+          sessionId: { type: "string" },
+          createdCount: { type: "integer" },
+          skippedCount: { type: "integer" },
+          errorCount: { type: "integer" },
+          errors: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                epc: { type: "string" },
+                message: { type: "string" },
+              },
+            },
+          },
+          message: { type: "string" },
+        },
+      },
+      InventoryScanRequest: {
+        type: "object",
+        required: ["action", "sessionId", "rfids"],
+        properties: {
+          action: { type: "string", const: "warehouseInventoryScan" },
+          sessionId: {
+            type: "string",
+            maxLength: 180,
+            description: "Khóa idempotency; giữ nguyên khi retry.",
+          },
+          rfids: {
+            type: "array",
+            minItems: 1,
+            maxItems: 10000,
+            items: { type: "string" },
+          },
+          tags: {
+            type: "array",
+            description: "Tùy chọn; metadata lần đọc theo EPC.",
+            items: {
+              type: "object",
+              required: ["epc"],
+              properties: {
+                epc: { type: "string" },
+                timestamp: { type: "string", format: "date-time" },
+              },
+            },
+          },
+          operator: { type: "string" },
+          deviceName: { type: "string" },
+          date: { type: "string", format: "date" },
+          area: { type: "string" },
+          shelf: { type: "string" },
+          inventoryType: { type: "string", enum: ["START", "END", ""] },
+          totalReadCount: { type: "integer", minimum: 1 },
+          source: { type: "string", default: "Android/RFID" },
+        },
+      },
+      InventoryScanResponse: {
+        type: "object",
+        required: ["ok", "action", "sessionId", "summary", "comparison"],
+        properties: {
+          ok: { type: "boolean" },
+          accepted: { type: "boolean" },
+          action: { type: "string", const: "warehouseInventoryScan" },
+          sessionId: { type: "string" },
+          scanSession: { type: "string" },
+          processStatus: { type: "string", enum: ["SUCCESS", "PARTIAL"] },
+          message: { type: "string" },
+          summary: {
+            type: "object",
+            description:
+              "Kết quả của request/batch hiện tại để client ghép progress; bản ghi phiên trên web được cộng dồn theo sessionId.",
+            properties: {
+              requestedReadCount: { type: "integer" },
+              uniqueRfidCount: { type: "integer" },
+              knownRfidCount: { type: "integer" },
+              unknownRfidCount: { type: "integer" },
+              physicalSkuCount: { type: "integer" },
+            },
+          },
+          comparison: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                sku: { type: "string" },
+                name: { type: "string" },
+                physicalQuantity: { type: "integer" },
+                rfids: { type: "array", items: { type: "string" } },
+              },
+            },
+          },
+          unknownRfids: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                rfid: { type: "string" },
+                reason: { type: "string" },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+} as const;

@@ -1,0 +1,10 @@
+{
+  "action": "warehouseDefineRfidBatch",
+  "sessionId": "android-cancel-20260728-170000-001",
+  "rfids": ["E28069150000502011223344"],
+  "issuanceStatus": "CANCELLED",
+  "cancelledBy": "Nguyễn Minh Thông",
+  "cancelledAt": "2026-07-28T17:00:00+07:00",
+  "deviceName": "CHAINWAY_C72_01",
+  "source": "Android/RFID"
+}

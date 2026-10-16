@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "action": "warehouseRfidSearch",
+  "query": "NTV-GOI-001",
+  "status": "ACTIVE",
+  "total": 1,
+  "truncated": false,
+  "generatedAt": "2026-07-28T10:00:00.000Z",
+  "options": [
+    {
+      "rfid": "E28069150000502011223344",
+      "epc": "E28069150000502011223344",
+      "sku": "NTV-GOI-001",
+      "name": "Gối nằm Thuần Việt",
+      "barcode": "8938500000012",
+      "status": "Tồn kho",
+      "issuanceStatus": "ACTIVE",
+      "entryDate": "2026-07-20T08:00:00.000Z",
+      "issuedAt": "2026-07-20T08:00:00.000Z"
+    }
+  ]
+}

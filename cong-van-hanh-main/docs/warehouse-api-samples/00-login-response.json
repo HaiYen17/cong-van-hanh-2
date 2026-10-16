@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "tokenType": "Bearer",
+  "accessToken": "<ACCESS_TOKEN>",
+  "expiresAt": "2026-07-28T18:00:00.000Z",
+  "profile": {
+    "userId": "user_database_id",
+    "employeeId": "employee_database_id",
+    "employeeCode": "2411301",
+    "displayName": "Nguyễn Minh Thông",
+    "department": "Vận hành",
+    "title": "Nhân viên",
+    "company": {
+      "code": "NTV",
+      "name": "Nệm Thuần Việt"
+    },
+    "roles": ["employee"],
+    "permissions": [],
+    "modules": [],
+    "moduleGroups": [],
+    "fullAccess": false
+  }
+}

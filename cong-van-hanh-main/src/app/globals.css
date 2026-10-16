@@ -1,0 +1,253 @@
+@import "tailwindcss";
+@import "./legacy-ui.css";
+
+:root {
+  --background: #f4efe4; /* nền ấm cream như bản cũ (--background-wash) */
+  --foreground: #18342f;
+  --surface: #ffffff;
+  --surface-muted: #f1ede2;
+  --border: #e1dccd;
+  --primary: #114c41; /* xanh teal đậm - màu thương hiệu */
+  --primary-foreground: #ffffff;
+  --brand-light: #e01a6f;
+  --brand: #d4196a;
+  --brand-strong: #bd1659;
+  --brand-soft: #fde7f1;
+  --brand-header-background: linear-gradient(
+    90deg,
+    var(--brand-light),
+    var(--brand),
+    var(--brand-strong)
+  );
+  --brand-button-background: linear-gradient(
+    135deg,
+    var(--brand-light),
+    var(--brand),
+    var(--brand-strong)
+  );
+  --brand-button-border: 1px solid transparent;
+  --brand-button-color: #ffffff;
+  --brand-shadow: color-mix(in srgb, var(--brand) 26%, transparent);
+  --brand-shadow-medium: color-mix(in srgb, var(--brand) 20%, transparent);
+  --brand-shadow-soft: color-mix(in srgb, var(--brand) 12%, transparent);
+  --header-title-color: #ffffff;
+  --header-subtitle-color: #fbd6e6;
+  --accent: var(--brand);
+  --accent-strong: var(--brand-strong);
+  --accent-soft: var(--brand-soft);
+  --muted: #62756f;
+  --muted-strong: #506661;
+  --line: #e1dccd;
+  --surface-strong: #ffffff;
+  --text: #18342f;
+  --ui-button-height: 48px;
+  --ui-button-hover-shadow: 0 12px 26px var(--brand-shadow-medium);
+  --ui-button-hover-transform: translateY(-2px);
+  --ui-button-radius: 999px;
+  --ui-button-shadow: 0 12px 26px var(--brand-shadow-medium);
+  --ui-card-radius: 8px;
+  --ui-control-radius: 8px;
+  --ui-surface-shadow: 0 18px 44px rgba(17, 45, 39, 0.08);
+  --success: #0f8a5f;
+  --danger: #ba2f2f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-brand-light: var(--brand-light);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --font-sans:
+    var(--font-be-vietnam-pro), "Be Vietnam Pro", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-heading:
+    var(--font-montserrat), "Montserrat", var(--font-be-vietnam-pro),
+    ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(
+      1100px 560px at 88% -8%,
+      color-mix(in srgb, var(--brand) 9%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      820px 480px at -5% 0%,
+      rgba(17, 76, 65, 0.08),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--background) 90%, white),
+      color-mix(in srgb, var(--background) 84%, #dcece3)
+    ),
+    var(--background);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family:
+    var(--font-be-vietnam-pro), "Be Vietnam Pro", ui-sans-serif, system-ui,
+    sans-serif;
+}
+
+.app-shell {
+  background:
+    radial-gradient(
+      1100px 560px at 88% -8%,
+      color-mix(in srgb, var(--brand) 9%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      820px 480px at -5% 0%,
+      rgba(17, 76, 65, 0.08),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--background) 90%, white),
+      color-mix(in srgb, var(--background) 84%, #dcece3)
+    ),
+    var(--background);
+  background-attachment: fixed;
+}
+
+/* Tiêu đề module giữ gọn một dòng; nội dung hướng dẫn nằm trong từng khối chức năng. */
+.app-module-root > section:first-child h1 ~ p {
+  display: none;
+}
+
+.app-button {
+  border-radius: var(--ui-button-radius);
+}
+
+.app-primary-button {
+  border: var(--brand-button-border);
+  background: var(--brand-button-background);
+  color: var(--brand-button-color);
+  box-shadow: var(--ui-button-shadow);
+}
+
+.app-primary-button:not(:disabled):hover {
+  transform: var(--ui-button-hover-transform);
+  box-shadow: var(--ui-button-hover-shadow);
+  filter: brightness(1.035);
+}
+
+.app-secondary-button {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--ui-surface-shadow);
+}
+
+.app-secondary-button:not(:disabled):hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent-soft) 42%, var(--surface));
+  transform: var(--ui-button-hover-transform);
+}
+
+.app-panel {
+  border-color: var(--border);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface);
+  box-shadow: var(--ui-surface-shadow);
+}
+
+.app-control {
+  border-color: var(--border);
+  border-radius: var(--ui-control-radius);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.header-action-button {
+  border-color: color-mix(in srgb, var(--header-title-color) 30%, transparent);
+  background: color-mix(in srgb, var(--header-title-color) 10%, transparent);
+  color: var(--header-title-color);
+}
+
+.header-action-button:hover {
+  background: color-mix(in srgb, var(--header-title-color) 25%, transparent);
+}
+
+/* Tiêu đề dùng Montserrat — bám design system V2 bản cũ. */
+h1,
+h2,
+h3,
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+@keyframes bubble-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(2.7);
+    opacity: 0;
+  }
+}
+
+.animate-bubble-pop {
+  animation: bubble-pop 0.75s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes electrical-activity-rise {
+  0% {
+    transform: translateY(28px) scale(0.96);
+    opacity: 0;
+  }
+  9% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  86% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-18px) scale(0.985);
+    opacity: 0;
+  }
+}
+
+.electrical-activity-bubble {
+  animation: electrical-activity-rise 5.6s ease-in-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .electrical-activity-bubble {
+    animation: none;
+  }
+}

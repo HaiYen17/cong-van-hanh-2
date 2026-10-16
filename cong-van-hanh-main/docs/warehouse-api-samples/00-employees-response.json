@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "generatedAt": "2026-07-28T10:00:00.000Z",
+  "employees": [
+    {
+      "employeeId": "employee_database_id",
+      "employeeCode": "2411301",
+      "fullName": "Nguyễn Minh Thông",
+      "department": "Vận hành",
+      "title": "Nhân viên",
+      "companyCode": "NTV",
+      "companyName": "Nệm Thuần Việt",
+      "requiresPassword": true,
+      "hasPassword": true
+    }
+  ]
+}

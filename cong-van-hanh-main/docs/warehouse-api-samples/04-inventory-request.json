@@ -1,0 +1,26 @@
+{
+  "action": "warehouseInventoryScan",
+  "sessionId": "inventory-20260728-180000-001",
+  "rfids": [
+    "E28069150000502011223344",
+    "E28069150000502011223345"
+  ],
+  "tags": [
+    {
+      "epc": "E28069150000502011223344",
+      "timestamp": "2026-07-28T18:00:02+07:00"
+    },
+    {
+      "epc": "E28069150000502011223345",
+      "timestamp": "2026-07-28T18:00:03+07:00"
+    }
+  ],
+  "operator": "Nguyễn Minh Thông",
+  "deviceName": "CHAINWAY_C72_01",
+  "date": "2026-07-28",
+  "area": "Kho chính",
+  "shelf": "Kệ A1",
+  "inventoryType": "END",
+  "totalReadCount": 2,
+  "source": "Android/RFID"
+}

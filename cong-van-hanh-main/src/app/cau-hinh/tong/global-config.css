@@ -1,0 +1,912 @@
+.global-config-root {
+  display: grid;
+  gap: 16px;
+}
+
+.global-config-root .global-config-intro {
+  max-width: 760px;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.global-config-root .global-config-tabs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 8px;
+  border: 1px solid rgba(17, 76, 65, 0.09);
+  border-radius: 8px;
+  background: rgba(250, 251, 248, 0.92);
+  box-shadow: 0 12px 24px rgba(17, 45, 39, 0.06);
+}
+
+.global-config-root .global-config-tab {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(15, 76, 65, 0.76);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.global-config-root .global-config-tab.is-active {
+  border-color: color-mix(in srgb, var(--accent) 26%, transparent);
+  background: #fff;
+  color: var(--accent-strong);
+  box-shadow: 0 10px 20px rgba(17, 45, 39, 0.07);
+}
+
+.global-config-root .global-config-pane {
+  display: grid;
+  gap: 16px;
+}
+
+.global-config-root .global-config-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(360px, 0.76fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.global-config-root .global-config-panel {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  background: color-mix(in srgb, var(--surface) 96%, var(--background));
+  box-shadow: var(--ui-surface-shadow);
+}
+
+.global-config-root .global-config-panel-head {
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.global-config-root .global-config-kicker {
+  margin: 0 0 5px;
+  color: var(--accent-strong);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.global-config-root .global-config-title {
+  margin: 0;
+  color: var(--accent-deep);
+  font-size: 1.12rem;
+  font-weight: 900;
+  line-height: 1.28;
+}
+
+.global-config-root .global-config-note {
+  margin: 4px 0 0;
+  color: var(--muted-strong);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.global-config-root .global-config-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.global-config-root .global-config-field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.global-config-root .global-config-field--wide {
+  grid-column: 1 / -1;
+}
+
+.global-config-root .global-config-secret-row {
+  display: grid;
+  gap: 8px;
+}
+
+.global-config-root .global-config-clear {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  width: max-content;
+  color: var(--muted-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.global-config-root .global-config-clear input,
+.global-config-root .global-config-secret-check input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.global-config-root .global-config-token-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px;
+  border: 1px dashed rgba(17, 76, 65, 0.16);
+  border-radius: 8px;
+  background: rgba(244, 247, 244, 0.62);
+}
+
+.global-config-root .global-config-token-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.global-config-root .global-config-token-actions .ui-button {
+  min-height: 42px;
+  padding: 0 14px;
+}
+
+.global-config-root .global-config-field-help {
+  color: var(--muted-strong);
+  font-size: 0.75rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.global-config-root .global-config-diagnostic {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(184, 91, 34, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 249, 244, 0.92);
+}
+
+.global-config-root .global-config-diagnostic-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.global-config-root .global-config-diagnostic-head > div {
+  display: grid;
+  gap: 4px;
+}
+
+.global-config-root .global-config-diagnostic-head strong {
+  color: var(--accent-deep);
+  font-size: 0.84rem;
+}
+
+.global-config-root .global-config-diagnostic-head span {
+  color: var(--muted-strong);
+  font-size: 0.74rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.global-config-root .global-config-diagnostic pre {
+  max-height: 360px;
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  border: 1px solid rgba(17, 76, 65, 0.12);
+  border-radius: 8px;
+  background: #102b26;
+  color: #e9f4ef;
+  font: 0.75rem/1.55 Consolas, "Courier New", monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.global-config-root .global-config-url-preview {
+  display: grid;
+  gap: 6px;
+  padding: 11px 12px;
+  border: 1px dashed rgba(17, 76, 65, 0.16);
+  border-radius: 8px;
+  background: rgba(244, 247, 244, 0.76);
+  color: var(--muted-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.global-config-root .global-config-url-preview strong {
+  color: var(--accent-deep);
+}
+
+.global-config-root .global-config-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 2px;
+}
+
+.global-config-root .global-config-actions-right,
+.global-config-root .global-config-row-actions,
+.global-config-root .global-config-module-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.global-config-root .global-config-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  color: var(--accent-strong);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.global-config-root .global-config-list {
+  display: grid;
+  gap: 10px;
+  max-height: min(58vh, 620px);
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.global-config-root .global-config-account {
+  display: grid;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid rgba(17, 76, 65, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 24px rgba(17, 45, 39, 0.045);
+}
+
+.global-config-root .global-config-account-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+}
+
+.global-config-root .global-config-account-title {
+  margin: 0;
+  color: var(--accent-deep);
+  font-size: 0.96rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.global-config-root .global-config-account-meta {
+  margin: 3px 0 0;
+  color: var(--muted-strong);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.global-config-root .global-config-chip-list {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.global-config-root .global-config-chip {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 28px;
+  padding: 0 9px;
+  border-radius: 8px;
+  background: rgba(17, 76, 65, 0.08);
+  color: var(--accent-deep);
+  font-size: 0.74rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.global-config-root .global-config-chip--orange {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent-strong);
+}
+
+.global-config-root .global-config-chip--muted {
+  background: rgba(17, 76, 65, 0.06);
+  color: var(--muted-strong);
+}
+
+.global-config-root .global-config-mini-button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid rgba(17, 76, 65, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--accent-deep);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.global-config-root .global-config-mini-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.global-config-root .global-config-mini-button--danger {
+  background: rgba(255, 243, 241, 0.96);
+  color: #8b1a1a;
+}
+
+.global-config-root .global-config-empty {
+  padding: 24px;
+  border: 1px dashed rgba(17, 76, 65, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.global-config-root .global-config-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 28px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.global-config-root .global-config-module-list {
+  display: grid;
+  gap: 11px;
+}
+
+.global-config-root .global-config-module-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(260px, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  padding: 13px;
+  border: 1px solid rgba(17, 76, 65, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 24px rgba(17, 45, 39, 0.045);
+}
+
+.global-config-root .global-config-module-row-info {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.global-config-root .global-config-module-label {
+  margin: 0;
+  color: var(--accent-deep);
+  font-size: 0.92rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.global-config-root .global-config-module-help {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.global-config-root .global-config-module-value {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.global-config-root .global-config-secret-check {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.global-config-root .global-config-brand-panel {
+  overflow: hidden;
+}
+
+.global-config-root .global-config-brand-badge {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 11px;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.global-config-root .global-config-brand-preview {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 104px;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 16px 34px var(--brand-shadow);
+}
+
+.global-config-root .global-config-brand-preview-logo {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 950;
+  box-shadow: 0 8px 22px rgb(0 0 0 / 16%);
+}
+
+.global-config-root .global-config-brand-preview-copy,
+.global-config-root .global-config-brand-preview-user {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.global-config-root .global-config-brand-preview-copy strong {
+  font-size: 1.06rem;
+  font-weight: 900;
+}
+
+.global-config-root .global-config-brand-preview-copy span,
+.global-config-root .global-config-brand-preview-user span {
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+.global-config-root .global-config-brand-preview-user {
+  text-align: right;
+}
+
+.global-config-root .global-config-brand-preview-user strong {
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.global-config-root .global-config-brand-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.global-config-root .global-config-brand-section-head {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding-top: 6px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 68%, transparent);
+}
+
+.global-config-root .global-config-brand-section-head > span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.68rem;
+  font-weight: 950;
+}
+
+.global-config-root .global-config-brand-section-head h3,
+.global-config-root .global-config-brand-section-head p {
+  margin: 0;
+}
+
+.global-config-root .global-config-brand-section-head h3 {
+  color: var(--accent-deep);
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.global-config-root .global-config-brand-section-head p {
+  margin-top: 3px;
+  color: var(--muted-strong);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.global-config-root .global-config-brand-fields,
+.global-config-root .global-config-brand-colors {
+  display: grid;
+  gap: 12px;
+}
+
+.global-config-root .global-config-brand-colors {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.global-config-root .global-config-brand-colors--surface {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.global-config-root .global-config-brand-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.global-config-root .global-config-brand-option {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.global-config-root .global-config-brand-option small {
+  color: var(--muted-strong);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.global-config-root .global-config-component-preview {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.72fr) minmax(280px, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--ui-surface-shadow);
+  transition: border-radius 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.global-config-root .global-config-component-preview-copy {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.global-config-root .global-config-component-preview-copy strong {
+  color: var(--text);
+  font-size: 0.94rem;
+  font-weight: 900;
+}
+
+.global-config-root .global-config-component-preview-copy small {
+  color: var(--muted-strong);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.global-config-root .global-config-preview-chip {
+  width: max-content;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.65rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.global-config-root .global-config-preview-actions,
+.global-config-root .global-config-preview-control {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.global-config-root .global-config-preview-control {
+  grid-column: 1 / -1;
+}
+
+.global-config-root .global-config-preview-control .ui-module-input {
+  flex: 1 1 240px;
+}
+
+.global-config-root .global-config-brand-color {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.global-config-root .global-config-brand-color-control {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.global-config-root .global-config-brand-color-control input[type="color"] {
+  width: 48px;
+  height: 52px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--ui-control-radius);
+  background: #fff;
+  cursor: pointer;
+}
+
+.global-config-root .global-config-brand-color small {
+  color: var(--muted-strong);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.global-config-root .global-config-brand-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.global-config-root .global-config-module-header-editor {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.58fr) minmax(0, 1.42fr);
+  gap: 14px;
+  align-items: start;
+  padding: 15px;
+  border: 1px solid color-mix(in srgb, var(--accent) 14%, var(--border));
+  border-radius: var(--ui-card-radius);
+  background: color-mix(in srgb, var(--surface) 94%, var(--accent-soft));
+}
+
+.global-config-root .global-config-module-header-picker {
+  display: grid;
+  gap: 8px;
+}
+
+.global-config-root .global-config-module-header-preview {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 13px;
+  align-items: center;
+  min-height: 112px;
+  padding: 16px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  border-radius: var(--ui-card-radius);
+  background: linear-gradient(
+    115deg,
+    color-mix(in srgb, var(--accent-soft) 54%, var(--surface)),
+    color-mix(in srgb, var(--surface) 96%, var(--background)) 62%
+  );
+  box-shadow: var(--ui-surface-shadow);
+}
+
+.global-config-root .global-config-module-header-preview::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  right: -72px;
+  top: -88px;
+  border: 22px solid color-mix(in srgb, var(--accent) 8%, transparent);
+  border-radius: 999px;
+}
+
+.global-config-root .global-config-module-header-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 50px;
+  height: 50px;
+  place-items: center;
+  border-radius: min(var(--ui-card-radius), 14px);
+  color: var(--brand-button-color);
+  background: var(--brand-button-background);
+  box-shadow: var(--ui-button-shadow);
+}
+
+.global-config-root .global-config-module-header-icon svg {
+  width: 25px;
+  height: 25px;
+  stroke-width: 2.1;
+}
+
+.global-config-root .global-config-module-header-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.global-config-root .global-config-module-header-copy span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--accent-strong);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.075em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.global-config-root .global-config-module-header-copy strong {
+  color: var(--text);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.global-config-root .global-config-module-header-fields {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.global-config-root .global-config-module-header-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.global-config-root .global-config-multi .ui-multi-select-toggle {
+  min-height: 52px;
+  background: #fff;
+}
+
+.global-config-root .global-config-multi .ui-multi-select-menu {
+  max-height: 260px;
+  overflow: auto;
+}
+
+.global-config-confirm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(7, 24, 21, 0.48);
+  backdrop-filter: blur(3px);
+}
+
+.global-config-confirm {
+  width: min(440px, 100%);
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid rgba(17, 76, 65, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 28px 76px rgba(17, 45, 39, 0.28);
+}
+
+.global-config-confirm h3,
+.global-config-confirm p {
+  margin: 0;
+}
+
+.global-config-confirm h3 {
+  color: var(--accent-deep);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.global-config-confirm p {
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+@media (orientation: portrait), (max-width: 940px) {
+  .global-config-root .global-config-grid,
+  .global-config-root .global-config-brand-layout,
+  .global-config-root .global-config-module-header-editor,
+  .global-config-root .global-config-module-header-fields,
+  .global-config-root .global-config-component-preview,
+  .global-config-root .global-config-form-grid,
+  .global-config-root .global-config-token-flow,
+  .global-config-root .global-config-module-row {
+    grid-template-columns: 1fr;
+  }
+
+  .global-config-root .global-config-brand-options,
+  .global-config-root .global-config-brand-colors--surface {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .global-config-root .global-config-preview-actions,
+  .global-config-root .global-config-preview-control {
+    justify-content: flex-start;
+  }
+
+  .global-config-root .global-config-token-actions,
+  .global-config-root .global-config-row-actions,
+  .global-config-root .global-config-module-actions {
+    justify-content: flex-start;
+  }
+
+  .global-config-root .global-config-account-head {
+    grid-template-columns: 1fr;
+  }
+
+  .global-config-root .global-config-list {
+    max-height: none;
+  }
+
+  .global-config-root .global-config-brand-preview {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .global-config-root .global-config-brand-preview-user {
+    display: none;
+  }
+
+  .global-config-root .global-config-brand-actions {
+    justify-content: flex-start;
+  }
+
+  .global-config-root .global-config-module-header-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .global-config-root .global-config-brand-colors,
+  .global-config-root .global-config-brand-colors--surface,
+  .global-config-root .global-config-brand-options {
+    grid-template-columns: 1fr;
+  }
+
+  .global-config-root .global-config-brand-actions .ui-button {
+    width: 100%;
+  }
+
+  .global-config-root .global-config-module-header-actions .ui-button {
+    width: 100%;
+  }
+}

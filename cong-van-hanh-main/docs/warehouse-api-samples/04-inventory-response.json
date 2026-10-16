@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "accepted": true,
+  "action": "warehouseInventoryScan",
+  "sessionId": "inventory-20260728-180000-001",
+  "scanSession": "inventory-20260728-180000-001",
+  "processStatus": "SUCCESS",
+  "message": "Đã nhận diện 2 RFID thành 1 SKU.",
+  "summary": {
+    "requestedReadCount": 2,
+    "uniqueRfidCount": 2,
+    "knownRfidCount": 2,
+    "unknownRfidCount": 0,
+    "physicalSkuCount": 1
+  },
+  "comparison": [
+    {
+      "sku": "NTV-GOI-001",
+      "name": "Gối nằm Thuần Việt",
+      "physicalQuantity": 2,
+      "rfids": [
+        "E28069150000502011223344",
+        "E28069150000502011223345"
+      ]
+    }
+  ],
+  "unknownRfids": []
+}

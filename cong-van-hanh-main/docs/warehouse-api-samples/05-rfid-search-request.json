@@ -1,0 +1,5 @@
+{
+  "action": "warehouseRfidSearch",
+  "query": "NTV-GOI-001",
+  "limit": 100
+}

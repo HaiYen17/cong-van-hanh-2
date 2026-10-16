@@ -1,0 +1,6 @@
+{
+  "action": "warehouseCatalogLookup",
+  "barcode": "8938500000012",
+  "page": 1,
+  "limit": 100
+}

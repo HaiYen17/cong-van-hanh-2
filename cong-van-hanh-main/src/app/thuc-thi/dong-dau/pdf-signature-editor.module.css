@@ -1,0 +1,25 @@
+.editor { display: grid; gap: 12px; min-width: 0; color: var(--text, #173f37); }
+.heading { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.heading p { margin: 5px 0 0; color: var(--muted-strong, #61736d); font-size: 12px; line-height: 1.5; }
+.count { flex: 0 0 auto; border-radius: 6px; padding: 5px 8px; background: #fef0e7; color: var(--accent-strong, #b55225); font-size: 12px; font-weight: 700; }
+.toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 12px; }
+.toolbar label { display: flex; align-items: center; gap: 6px; }
+.toolbar button, .toolbar select, .regionRow button { border: 1px solid var(--line, #dbe3df); border-radius: 6px; background: var(--surface-strong, #fff); color: inherit; min-height: 32px; padding: 5px 8px; cursor: pointer; }
+.toolbar button { display: inline-flex; align-items: center; justify-content: center; }
+.toolbar button:disabled, .toolbar select:disabled { cursor: default; opacity: .45; }
+.toolbar > span { margin-left: auto; color: var(--muted-strong, #61736d); }
+.viewport { min-width: 0; width: 100%; border: 1px solid var(--line, #dbe3df); background: #eef1ef; }
+.page { position: relative; min-height: 160px; background: #fff; overflow: hidden; }
+.canvas { display: block; width: 100%; height: auto; }
+.drawLayer { position: absolute; inset: 0; cursor: crosshair; touch-action: none; user-select: none; }
+.region { position: absolute; border: 2px solid var(--accent-strong, #c6602e); background: rgba(234, 108, 45, .12); color: #8d3815; pointer-events: none; overflow: hidden; }
+.region span { display: block; padding: 3px; font-size: 11px; font-weight: 700; line-height: 1.2; }
+.draft { border-style: dashed; }
+.loading { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(255, 255, 255, .86); font-size: 13px; }
+.error { margin: 0; color: #a92929; font-size: 13px; }
+.empty { margin: 0; font-size: 12px; color: var(--muted-strong, #61736d); }
+.regions { display: flex; flex-wrap: wrap; gap: 7px; }
+.regionRow { display: inline-flex; gap: 3px; }
+.regionRow button { font-size: 12px; }
+.regionRow button:last-child { display: inline-flex; align-items: center; color: #a92929; }
+@media (max-width: 600px) { .heading { flex-wrap: wrap; } .toolbar > span { margin-left: 0; flex-basis: 100%; } }

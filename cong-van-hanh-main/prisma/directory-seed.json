@@ -1,0 +1,2416 @@
+{
+ "companies": [
+  {
+   "legalName": "Nệm Thuần Việt",
+   "code": "NTV",
+   "taxCode": "3.15308944E8",
+   "status": "Kích hoạt"
+  },
+  {
+   "legalName": "Night Dream",
+   "code": "NDL",
+   "taxCode": "3.15308944E8",
+   "status": "Kích hoạt"
+  },
+  {
+   "legalName": "Thuần Việt Digital",
+   "code": "TVD",
+   "taxCode": "3.18733601E8",
+   "status": "Kích hoạt"
+  },
+  {
+   "legalName": "Nệm Thành Công",
+   "code": "NTC",
+   "taxCode": "1.102015078E9",
+   "status": "Kích hoạt"
+  },
+  {
+   "legalName": "Thuần Việt Global",
+   "code": "TVG",
+   "taxCode": "3.18692955E8",
+   "status": "Kích hoạt"
+  }
+ ],
+ "employees": [
+  {
+   "employeeCode": "2411301",
+   "fullName": "Nguyễn Minh Thông",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "hc.thuanviet@gmail.com",
+   "title": "Trưởng nhóm dịch vụ nội bộ và số hóa",
+   "phone": "0937451863",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "1810001",
+   "fullName": "Phạm Văn Bình",
+   "department": "Ban giám đốc",
+   "email": "Phambinh.868@gmail.com",
+   "title": "Tổng giám đốc",
+   "phone": "0931627999",
+   "status": "Chính thức",
+   "company": "Nệm Thuần Việt"
+  },
+  {
+   "employeeCode": "1709032",
+   "fullName": "Nguyễn Bá Trung",
+   "department": "Phòng Kinh doanh số 3",
+   "email": "trungnguyentv226@gmail.com",
+   "title": "Trưởng nhóm kinh doanh B2B",
+   "phone": "0906996009",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "1710021",
+   "fullName": "Nguyễn Huyền Anh",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "huyenanhnguyen166@gmail.com",
+   "title": "Chuyên viên kiểm soát và quản lý hệ thống",
+   "phone": "0972497237",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "1905044",
+   "fullName": "Đỗ Thị Cẩm Nhung",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "donhungdtcn@gmail.com",
+   "title": "Chuyên viên ecom",
+   "phone": "0704826638",
+   "status": "Khác",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "1905043",
+   "fullName": "Nguyễn Văn Minh Kha",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "minhkha91198@gmail.com",
+   "title": "Chuyên viên quản trị hiệu suất",
+   "phone": "0775091198",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2112012",
+   "fullName": "Nguyễn Xuân Đạt",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "xuandat1995@gmail.com",
+   "title": "Quản lý sales",
+   "phone": "0984550955",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2007009",
+   "fullName": "Phạm Ngọc Đức",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "duc.pham@nemthuanviet.com",
+   "title": "Trưởng nhóm sales online",
+   "phone": "0858471666",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2007014",
+   "fullName": "Trịnh Ngọc Khánh Hưng",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "hung.trinh@nemthuanviet.com",
+   "title": "Trưởng phòng Kinh doanh số 1",
+   "phone": "0394107629",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2012053",
+   "fullName": "Nguyễn Hiền Tuyết",
+   "department": "Phòng Kho vận",
+   "email": "hientriet170493@gmail.com",
+   "title": "Nhân viên tài xế",
+   "phone": "0335695044",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2010005",
+   "fullName": "Nguyễn Thị Hồng Thoa",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "thoanguyen.020999@gmail.com",
+   "title": "Chuyên viên kế toán thanh toán",
+   "phone": "0799656485",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2012045",
+   "fullName": "Nguyễn Thị Danh",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "danhnguyen281199@gmail.com",
+   "title": "Trưởng nhóm sales chi nhánh",
+   "phone": "0792677504",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2112048",
+   "fullName": "Trần Thị Tường Vi",
+   "department": "Phòng Marketing & Brand",
+   "email": "vittt.datacare@gmail.com",
+   "title": "Trưởng nhóm media",
+   "phone": "0971689076",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2106023",
+   "fullName": "Trần Thị Yến Linh",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "yenlinhbee040991@gmail.com",
+   "title": "Trưởng nhóm sales và vận hành chi nhánh",
+   "phone": "0966763946",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2106003",
+   "fullName": "Nguyễn Thị Phương Uyên",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "uyennguyen.evishome@gmail.com",
+   "title": "Kế toán trưởng",
+   "phone": "0938477369",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2110064",
+   "fullName": "Phạm Thị Thùy Dương",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "ptthuyduong3011@gmail.com",
+   "title": "Quản lý sales",
+   "phone": "0971788111",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2112034",
+   "fullName": "Ngô Thị Nhung",
+   "department": "Phòng Kho vận",
+   "email": "nhungngo1901@gmail.com",
+   "title": "Trưởng nhóm kho ecom",
+   "phone": "0329191629",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2112042",
+   "fullName": "Trần Văn Hùng",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "tranvanhungg0607@gmail.com",
+   "title": "Nhân viên an ninh",
+   "phone": "0353355137",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2112049",
+   "fullName": "Nguyễn Văn Tùng",
+   "department": "Phòng Kho vận",
+   "email": "nvtungjob@gmail.com",
+   "title": "Trưởng phòng Kho vận",
+   "phone": "0962846727",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2112020",
+   "fullName": "Hoàng Công Tuyền",
+   "department": "Phòng Marketing & Brand",
+   "email": "hctuyen29y7@gmail.com",
+   "title": "Chuyên viên editor",
+   "phone": "0336783986",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2201050",
+   "fullName": "Trần Thanh Cẩm Tú",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "tranthanhcamtu2000@gmail.com",
+   "title": "Nhân viên ecom",
+   "phone": "0964724126",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2202081",
+   "fullName": "Võ Thị Diễm Trang",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "diemtrang052011@gmail.com",
+   "title": "Kế toán tổng hợp",
+   "phone": "0979993915",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2203097",
+   "fullName": "Lương Nguyễn Nhật Minh",
+   "department": "Phòng Kho vận",
+   "email": "luongnguyennhatminh123@gmail.com",
+   "title": "Nhân viên vận hành kho",
+   "phone": "0789743211",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2204105",
+   "fullName": "Trần Thị Hồng Nhi",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "kimsongnhi2105@gmail.com",
+   "title": "Quản lý sales",
+   "phone": "0922 916 567",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2208126",
+   "fullName": "Nguyễn Hoàng Tú",
+   "department": "Phòng Kho vận",
+   "email": "Nguyenhoangtuu2307@gmail.com",
+   "title": "Tổ trưởng kho",
+   "phone": "0931222417",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2302160",
+   "fullName": "Đồng Thị Ngọc Yến",
+   "department": "Phòng Kho vận",
+   "email": "dongthingocyen01b@gmail.com",
+   "title": "Nhân viên admin kho",
+   "phone": "0906465764",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2303167",
+   "fullName": "Phạm Thị Như Quỳnh",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "phamthinhuquynh130@gmail.com",
+   "title": "Trưởng nhóm sales online",
+   "phone": "0703773979",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2304168",
+   "fullName": "Đặng Quốc Cường",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "Dangquoccuong1984@gmail.com",
+   "title": "Chuyên viên đào tạo",
+   "phone": "0909529366",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2306178",
+   "fullName": "Lai Kim Ngọc",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "kimngoclai05@gmail.com",
+   "title": "Trưởng nhóm sales và vận hành chi nhánh",
+   "phone": "0902204975",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2306181",
+   "fullName": "Phan Văn Tèo",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "Phanteo9998@gmail.com",
+   "title": "Nhân viên giao hàng chi nhánh",
+   "phone": "0933765196",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2307186",
+   "fullName": "Trần Thị Ái Như",
+   "department": "Phòng Marketing & Brand",
+   "email": "tranthiainhu3011@gmail.com",
+   "title": "Chuyên viên design",
+   "phone": "0386908101",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2307187",
+   "fullName": "Nguyễn Thị Thùy Dương",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "nguyenthithuyduong2842000@gmail.com",
+   "title": "Chuyên viên sales chi nhánh",
+   "phone": "0359433952",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2308195",
+   "fullName": "Lê Quốc Thuận",
+   "department": "Phòng Kho vận",
+   "email": "Lequocthuan4529@gmail.com",
+   "title": "Nhân viên kho",
+   "phone": "0794510107",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2311222",
+   "fullName": "Nguyễn Nam Duy",
+   "department": "Phòng Kho vận",
+   "email": "namduy081010@gmail.com",
+   "title": "Tổ trưởng kho",
+   "phone": "0708634675",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2401232",
+   "fullName": "Nguyễn Minh Hòa",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "hoa1900q@gmail.com",
+   "title": "Nhân viên giao hàng chi nhánh",
+   "phone": "327137000",
+   "status": "Khác",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2401233",
+   "fullName": "Lê Nam",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "lenam28091997ll@gmail.com",
+   "title": "Trưởng nhóm sales và vận hành chi nhánh",
+   "phone": "0786848044",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2403243",
+   "fullName": "Trần Duy Bảo",
+   "department": "Phòng Kho vận",
+   "email": "tranduybao061296@gmail.com",
+   "title": "Trưởng nhóm kho Global",
+   "phone": "0375217174",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2405261",
+   "fullName": "Phan Thị Thùy Linh",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "phanttlinh2803@gmail.com",
+   "title": "Nhân viên kế toán bán hàng",
+   "phone": "0337949967",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2405263",
+   "fullName": "Nguyễn Anh Tuấn",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "ngtuan218@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0962680058",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2405264",
+   "fullName": "Trần Thị Tiểu Mẫn",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "tieumantran2603@gmail.com",
+   "title": "Nhân viên sales chi nhánh",
+   "phone": "0985330048",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2405265",
+   "fullName": "Trần Toại Tuyên",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "toaituyen9316@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0328609316",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2405266",
+   "fullName": "Nguyễn Duy Vương",
+   "department": "Phòng Marketing & Brand",
+   "email": "duyvuong221197@gmail.com",
+   "title": "Chuyên viên design",
+   "phone": "0768221197",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2405267",
+   "fullName": "Phạm Văn Hậu",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "Hexciter97@gmail.com",
+   "title": "Nhân viên giao hàng chi nhánh",
+   "phone": "0909224600",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2405268",
+   "fullName": "Trần Thanh Phú",
+   "department": "Phòng Kho vận",
+   "email": "tphu09000@gmail.com",
+   "title": "Nhân viên tài xế",
+   "phone": "0975815390",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2406271",
+   "fullName": "Nguyễn Hùng Quang",
+   "department": "Phòng Kho vận",
+   "email": "nguyenhungquang001@gmail.com",
+   "title": "Nhân viên tài xế",
+   "phone": "0977020676",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2406272",
+   "fullName": "Nguyễn Thị Thanh",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "nguyenthanhacct@gmail.com",
+   "title": "Kế toán tổng hợp",
+   "phone": "0941200691",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2407275",
+   "fullName": "Âu Mỹ Quyên",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "auquyen0000@gmail.com",
+   "title": "Nhân viên sales chi nhánh",
+   "phone": "0929860026",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2407276",
+   "fullName": "Đoàn Thị Ngọc Ngân",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "ngocngan2003mwg@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0384676615",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2407277",
+   "fullName": "Ngô Thị Hoa",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "ngohoa050903@gmail.com",
+   "title": "Nhân viên sales chi nhánh",
+   "phone": "0339693754",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2407282",
+   "fullName": "Nguyễn Thu Thuỷ",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "thuynguyennemthuanviet@gmail.com",
+   "title": "Nhân viên kế toán mua hàng",
+   "phone": "0388538215",
+   "status": "Khác",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2408288",
+   "fullName": "Trần Thị Hồng Thi",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "tranthihongthi99@gmail.com",
+   "title": "Nhân viên sales chi nhánh",
+   "phone": "0353229321",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2409291",
+   "fullName": "Nguyễn Thị Thanh Ngân",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "thanhnganxyz@gmail.com",
+   "title": "Trưởng nhóm ecom",
+   "phone": "0357736680",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2409289",
+   "fullName": "Lê Anh Thư",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "leanhthudp@gmail.com",
+   "title": "Nhân viên C&B",
+   "phone": "0386913097",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2410296",
+   "fullName": "Nguyễn Phú Hoà",
+   "department": "Phòng Kho vận",
+   "email": "nguyenphuhoa411@gmail.com",
+   "title": "Nhân viên kho",
+   "phone": "0898703609",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2409287",
+   "fullName": "Nguyễn Thị Lương",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "nguyenthiluong071@gmail.com",
+   "title": "Nhân viên cấp dưỡng",
+   "phone": "0777277243",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2410298",
+   "fullName": "Lương Nguyễn Nhật Quang",
+   "department": "Phòng Kho vận",
+   "email": "luongnguyennhatquang260700@gmail.com",
+   "title": "Nhân viên vận hành kho",
+   "phone": "0708673871",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2403247",
+   "fullName": "Lê Thị Ngọc Yến",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "lengocyen0410@gmail.com",
+   "title": "Trưởng nhóm C&B và đối tác nhân sự",
+   "phone": "0975399824",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2412304",
+   "fullName": "Bùi Thị Như Bình",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "buinhubinh09@gmail.com",
+   "title": "Nhân viên sales chi nhánh",
+   "phone": "0907142885",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2501305",
+   "fullName": "Nguyễn Thị Mộng Kiều",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "claranguyenhr@gmail.com",
+   "title": "Trưởng nhóm thu hút nhân tài",
+   "phone": "0794226459",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2503313",
+   "fullName": "Lê Thị Nhật Thu",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "lethinhatthu012@gmail.com",
+   "title": "Trưởng nhóm sales online",
+   "phone": "0833295916",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2503314",
+   "fullName": "Nguyễn Ngọc Điệp",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "nguyenminhdiep9752@gmail.com",
+   "title": "Nhân viên giao hàng chi nhánh",
+   "phone": "0909599752",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2503316",
+   "fullName": "Trần Thị Thùy Linh",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "tttlinh.vn@gmail.com",
+   "title": "Nhân viên sales chi nhánh",
+   "phone": "0886772184",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2503318",
+   "fullName": "Khổng Thị Hằng",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "hangthanh2799@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0329419127",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "1810002",
+   "fullName": "Nguyễn Thiện Vũ",
+   "department": "Ban giám đốc",
+   "email": "thienvu.biz@gmail.com",
+   "title": "Phó tổng giám đốc",
+   "phone": "0904298777",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2503319",
+   "fullName": "An Bích Vân",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "anbvan2099@gmail.com",
+   "title": "Nhân viên sales chi nhánh",
+   "phone": "0338003287",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2503320",
+   "fullName": "Phạm Quang Trường",
+   "department": "Phòng Kho vận",
+   "email": "phamtruong161122@gmail.com",
+   "title": "Nhân viên phụ xế",
+   "phone": "0366987877",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2503324",
+   "fullName": "Trương Ngọc Ánh",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "truongngocanh581999@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0792440902",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2503325",
+   "fullName": "Hà Minh Tuấn",
+   "department": "Phòng Kinh doanh số 3",
+   "email": "tuandial.work@gmail.com",
+   "title": "Nhân viên kinh doanh B2B",
+   "phone": "0961513909",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2503326",
+   "fullName": "Nguyễn Hoàng Anh",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "hoanganh150821@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0846922733",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2503328",
+   "fullName": "Nguyễn Hoàng Sinh",
+   "department": "Phòng Kho vận",
+   "email": "nguyenhoangsinh0921@gmail.com",
+   "title": "Nhân viên phụ xế",
+   "phone": "0933200163",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2503330",
+   "fullName": "Vy Thị Anh Thư",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "vyanhthu105@gmail.com",
+   "title": "Nhân viên ecom",
+   "phone": "0918768003",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2503331",
+   "fullName": "Võ Thị Công Đệ",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "Congdevothi1997@gmail.com",
+   "title": "Chuyên viên kiểm soát và quản lý hệ thống",
+   "phone": "0334209373",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2507333",
+   "fullName": "Trần Hoàng Sa",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "Hoangsaaza@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0878164433",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2507338",
+   "fullName": "Nguyễn Hoàng Anh Thư",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "nguyenhoanganhthu244@gmail.com",
+   "title": "Nhân viên kế toán bán hàng",
+   "phone": "0339020006",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2508340",
+   "fullName": "Đinh Thị Ngọc Minh",
+   "department": "Phòng Kho vận",
+   "email": "dtnminh.21@gmail.com",
+   "title": "Nhân viên quản lý công nợ ecom",
+   "phone": "0397639051",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2508341",
+   "fullName": "Nguyễn Phương Tùng",
+   "department": "Phòng Kho vận",
+   "email": "nguyenphuongtung222@gmail.com",
+   "title": "Nhân viên kho ecom",
+   "phone": "783771091",
+   "status": "Khác",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2508342",
+   "fullName": "Lê Quỳnh Như",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "lqnhu2499@gmail.com",
+   "title": "Nhân viên sales và CSKH ecom",
+   "phone": "0387634154",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2509348",
+   "fullName": "Trần Thị Hải Yến",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "tranthihaiyen171004@gmail.com",
+   "title": "Nhân viên dịch vụ nội bộ",
+   "phone": "0901042236",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2510350",
+   "fullName": "Phạm Quốc Huy",
+   "department": "Phòng Kho vận",
+   "email": "quochuypm206@gmail.com",
+   "title": "Nhân viên kho",
+   "phone": "0352395641",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2510351",
+   "fullName": "Phạm Đình Khôi",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "phamdinhkhoi2206@gmail.com",
+   "title": "Nhân viên giao hàng chi nhánh",
+   "phone": "0359518031",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2510353",
+   "fullName": "Hoàng Xuân Thông",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "hxt25112000@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0353531568",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2510352",
+   "fullName": "Lưu Hoàng Khải",
+   "department": "Phòng Kho vận",
+   "email": "hoangkhai240596@gmail.com",
+   "title": "Nhân viên tài xế",
+   "phone": "0867884110",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2511357",
+   "fullName": "Hoàng Vũ Tường Đoan",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "doan.hvt20@gmail.com",
+   "title": "Chuyên viên kế toán thanh toán",
+   "phone": "0902667602",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2511358",
+   "fullName": "Lê Thị Phương Nhi",
+   "department": "Phòng Kinh doanh",
+   "email": "ltpnhi301198@gmail.com",
+   "title": "Nhân viên bán hàng website",
+   "phone": "909431616",
+   "status": "Khác",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2512359",
+   "fullName": "Nguyễn Thị Ngọc Hân",
+   "department": "Phòng Marketing & Brand",
+   "email": "ngochan5404@gmail.com",
+   "title": "Nhân viên content",
+   "phone": "353390054",
+   "status": "Khác",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2601362",
+   "fullName": "Nguyễn Thị Minh Tâm",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "clairenguyen096@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0947834743",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2602363",
+   "fullName": "Trần Nguyễn Kim Phụng",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "kimphung01122004@gmail.com",
+   "title": "Thực tập sinh kế toán",
+   "phone": "0903621360",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2602364",
+   "fullName": "Lý Thị Thanh Phi",
+   "department": "Phòng Kinh doanh",
+   "email": "tqdylttp03@gmail.com",
+   "title": "Nhân viên admin kinh doanh B2B",
+   "phone": "0909471054",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2603365",
+   "fullName": "Võ Nguyễn Trúc My",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "vonguyentrucmy1806@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0906708069",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2603367",
+   "fullName": "Lê Thị Minh Hiếu",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "lehieudhkt@gmail.com",
+   "title": "Nhân viên kế toán chi phí và công nợ",
+   "phone": "0917523154",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2603368",
+   "fullName": "Trần Quốc Vinh",
+   "department": "Phòng Kho vận",
+   "email": "vinh01289846440@gmail.com",
+   "title": "Nhân viên kho",
+   "phone": "0789846440",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2603369",
+   "fullName": "Trần Ngọc My Thư",
+   "department": "Phòng Kho vận",
+   "email": "mythu16122000@gmail.com",
+   "title": "Nhân viên vận hành ecom",
+   "phone": "785767272",
+   "status": "Khác",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2603370",
+   "fullName": "Nguyễn Vương Thành Tâm",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "thanhtam20011014@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0909137793",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2603366",
+   "fullName": "Trần Thị Hiền",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "tranthihien200162@gmail.com",
+   "title": "Nhân viên cảnh quan",
+   "phone": "0775987081",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2603372",
+   "fullName": "Ngô Đức Minh Khôi",
+   "department": "Phòng Kho vận",
+   "email": "ndmkhoi211@gmail.com",
+   "title": "Nhân viên kho",
+   "phone": "0967562832",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2603373",
+   "fullName": "Lê Thị Hạnh Nguyên",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "hnguyen230423@gmail.com",
+   "title": "Nhân viên sales online",
+   "phone": "0988183023",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2604374",
+   "fullName": "Nguyễn Thị Thanh Trang",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "thanhtrang2589@gmail.com",
+   "title": "Chuyên viên kê khai và tuân thủ thuế",
+   "phone": "0798284390",
+   "status": "Thử việc",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2605381",
+   "fullName": "Lê Ngọc Long",
+   "department": "Phòng Kinh doanh số 3",
+   "email": "ngoclong8686868@gmail.com",
+   "title": "Chuyên viên sales online",
+   "phone": "0904660254",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2605380",
+   "fullName": "Nguyễn Huỳnh Xuân Lộc",
+   "department": "Phòng Kinh doanh số 3",
+   "email": "Xuanloc12367@gmail.com",
+   "title": "Chuyên viên sales online",
+   "phone": "0964463580",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2604375",
+   "fullName": "Phạm Nguyễn Nhật Kỳ",
+   "department": "Phòng Kinh doanh số 2",
+   "email": "kynguyen12156@gmail.com",
+   "title": "Thực tập sinh sales chi nhánh",
+   "phone": "817384687",
+   "status": "Khác",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2604376",
+   "fullName": "Phan Hồng Quân",
+   "department": "Phòng Kiến tạo nhân sự",
+   "email": "Phanhongquan060503@gmail.com",
+   "title": "Nhân viên thu hút nhân tài",
+   "phone": "0961195049",
+   "status": "Thử việc",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2605377",
+   "fullName": "Nguyễn Thị Thanh Thuỳ",
+   "department": "Phòng Kinh doanh số 1",
+   "email": "2051010385@vaa.edu.vn",
+   "title": "Nhân viên sales online",
+   "phone": "0397228657",
+   "status": "Thử việc",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2605378",
+   "fullName": "Nguyễn Thành Tiến",
+   "department": "Phòng Kho vận",
+   "email": "tienguyn616@gmail.com",
+   "title": "Nhân viên kho",
+   "phone": "0772821627",
+   "status": "Thử việc",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2605382",
+   "fullName": "Lương Thị Cẩm Nhung",
+   "department": "Phòng Kinh doanh số 3",
+   "email": "nhungltc0101@gmail.com",
+   "title": "Chuyên viên sales online",
+   "phone": "0931448370",
+   "status": "Chính thức",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2605379",
+   "fullName": "Lê Thị Tuyết Nga",
+   "department": "Phòng Kho vận",
+   "email": "tuyetnga.rtp@gmail.com",
+   "title": "Nhân viên vận hành kho",
+   "phone": "0396482424",
+   "status": "Thử việc",
+   "company": "Thuần Việt Digital"
+  },
+  {
+   "employeeCode": "2410298",
+   "fullName": "Lương Nguyễn Nhật Quang",
+   "department": "Phòng Kho vận",
+   "email": "luongnguyennhatquang260700@gmail.com",
+   "title": "Nhân viên vận hành kho",
+   "phone": "0708673871",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2605380",
+   "fullName": "Nguyễn Huỳnh Xuân Lộc",
+   "department": "Phòng Kinh doanh số 3",
+   "email": "Xuanloc12367@gmail.com",
+   "title": "Chuyên viên sales online",
+   "phone": "0964463580",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2605381",
+   "fullName": "Lê Ngọc Long",
+   "department": "Phòng Kinh doanh số 3",
+   "email": "ngoclong8686868@gmail.com",
+   "title": "Chuyên viên sales online",
+   "phone": "0904660254",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "2605382",
+   "fullName": "Lương Thị Cẩm Nhung",
+   "department": "Phòng Kinh doanh số 3",
+   "email": "nhungltc0101@gmail.com",
+   "title": "Chuyên viên sales online",
+   "phone": "0931448370",
+   "status": "Chính thức",
+   "company": "Thuần Việt Global"
+  },
+  {
+   "employeeCode": "KC1",
+   "fullName": "Phạm Văn Bình",
+   "department": "Ban Giám Đốc",
+   "email": "",
+   "title": "Giám Đốc",
+   "phone": "0931627999",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "VPTV2",
+   "fullName": "Nguyễn Thị Phương Uyên",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "",
+   "title": "Kế toán trưởng",
+   "phone": "0938477369",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "57",
+   "fullName": "Phạm Thị Kiều Tiên",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "",
+   "title": "Kế toán tổng hợp",
+   "phone": "0989882355",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "42",
+   "fullName": "Vòng Việt Hải",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Chuyên viên kế hoạch",
+   "phone": "0989090561",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "19",
+   "fullName": "Nguyễn Thành Nhân",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Tổ trưởng cơ khí",
+   "phone": "0933060540",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "12",
+   "fullName": "Nguyễn Bá Hưng",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân hóa chất",
+   "phone": "0382522616",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "37",
+   "fullName": "Tăng Văn Tòn",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "39",
+   "fullName": "Tăng Chí Luân",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Tổ phó sản xuất",
+   "phone": "0367163286",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "24",
+   "fullName": "Tăng Nhựt Linh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Kỹ thuật viên cơ khí",
+   "phone": "0989588673",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "41",
+   "fullName": "Trần Văn Tin",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0855316331",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "23",
+   "fullName": "Lê Viết Xuân",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Kỹ thuật viên điện",
+   "phone": "0777799357",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "17",
+   "fullName": "Nguyễn Thanh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Tổ trưởng may",
+   "phone": "0389090151",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "15",
+   "fullName": "Đinh Thị Ngọc Thúy",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0339930839",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "27",
+   "fullName": "Lê Văn Quang",
+   "department": "Ban Giám Đốc",
+   "email": "",
+   "title": "Phó Giám Đốc",
+   "phone": "0925646777",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "5",
+   "fullName": "Lê Thị Quỳnh Diên",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "",
+   "title": "Kế toán",
+   "phone": "0981776939",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "KC5",
+   "fullName": "Nguyễn Bá Hùng",
+   "department": "Phòng Kiến tạo Nhân sự",
+   "email": "",
+   "title": "Bảo vệ",
+   "phone": "0968473129",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "26",
+   "fullName": "Trần Hữu Nghĩa",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân bảo trì cơ khí",
+   "phone": "0764190072",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "14",
+   "fullName": "Giáp Minh Quyên",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0843406278",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "33",
+   "fullName": "Thạch Khna",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "30",
+   "fullName": "Bùi Quốc Thanh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0589761538",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "18",
+   "fullName": "Đỗ Thị Thùy Dương",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0375520910",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "8",
+   "fullName": "Phạm Anh Khoa",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0896418710",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "22",
+   "fullName": "Đỗ Xuân Lộc",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0982518874",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "36",
+   "fullName": "Lê Hữu Phước",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Tổ phó sản xuất",
+   "phone": "0915522694",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "9",
+   "fullName": "Đỗ Khang",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0394183328",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "35",
+   "fullName": "Bùi Văn Trong",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Tổ phó sản xuất",
+   "phone": "0377138428",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "51",
+   "fullName": "Trần Ngọc Tuyền",
+   "department": "Phòng Kiến tạo Nhân sự",
+   "email": "",
+   "title": "Nhân sự tổng hợp",
+   "phone": "0908171657",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "53",
+   "fullName": "Hoàng Thị Đến",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0329870214",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "56",
+   "fullName": "Huỳnh Văn Phát",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0832224017",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "7",
+   "fullName": "Nguyễn Thành Phát",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0347911072",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "60",
+   "fullName": "Nguyễn Tuấn Du",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Quản Đốc xưởng",
+   "phone": "0906832778",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "65",
+   "fullName": "Đặng Quốc Thịnh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0762937183",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "66",
+   "fullName": "Sơn Văn Tính",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0879970480",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "69",
+   "fullName": "Nguyễn Văn Huệ Hiền",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Nhân viên giao nhận",
+   "phone": "0971554450",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "71",
+   "fullName": "Lê Văn Tẩu Nam",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0914775491",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "72",
+   "fullName": "Lê Văn Thương",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân đốt lò",
+   "phone": "0367049658",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "73",
+   "fullName": "Nguyễn Quang Công",
+   "department": "Phòng Kinh doanh Số 3",
+   "email": "",
+   "title": "Trưởng nhóm sales online & B2B",
+   "phone": "0523792222",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "76",
+   "fullName": "Võ Văn Đạt",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0363395214",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "78",
+   "fullName": "Huỳnh Hoàng Tiến",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0938597129",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "79",
+   "fullName": "Hà Thạch Hùng",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0918748421",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "80",
+   "fullName": "Trần Anh Đào",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0359415336",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "81",
+   "fullName": "Phạm Thị Diệu Vân",
+   "department": "Phòng Kinh doanh Số 3",
+   "email": "",
+   "title": "Chuyên viên sale online",
+   "phone": "0816138188",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "40",
+   "fullName": "Tăng Duy Khánh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0931325374",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "87",
+   "fullName": "Nguyễn Đăng Khoa",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0908939786",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "89",
+   "fullName": "Nguyễn Thị Loan Anh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0366907417",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "91",
+   "fullName": "Huỳnh Tấn Nam",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Nhân viên giao nhận",
+   "phone": "0949055554",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "94",
+   "fullName": "Lâm Bình An",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0965274418",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "95",
+   "fullName": "Lâm Văn Hoàng",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0327271762",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "96",
+   "fullName": "Phạm Văn Tân",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Kỹ thuật viên cơ khí",
+   "phone": "0908398404",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "98",
+   "fullName": "Nguyễn Văn Sang",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0763033428",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "99",
+   "fullName": "Dương Văn Thảo",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0774448180",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "100",
+   "fullName": "Nguyễn Minh Luân Em",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0962018030",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "102",
+   "fullName": "Lê Công Thiện",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0775319683",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "103",
+   "fullName": "Lê Thị Phúc Hậu",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "",
+   "title": "Kế toán",
+   "phone": "0366260623",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "104",
+   "fullName": "Nguyễn Minh Sang",
+   "department": "Phòng Kinh doanh Số 3",
+   "email": "",
+   "title": "Chuyên viên sale online",
+   "phone": "0588392258",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "106",
+   "fullName": "Đặng Quân Trường",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0982437061",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "107",
+   "fullName": "Nguyễn Văn Thành",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0868512703",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "108",
+   "fullName": "Phùng Vũ Mi",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0792303010",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "111",
+   "fullName": "Nguyễn Xuân Hoang",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0967888058",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "113",
+   "fullName": "Nguyễn Hữu Tình",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0944950469",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "114",
+   "fullName": "Huỳnh Thị Thúy Loan",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0792077927",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "116",
+   "fullName": "Dương Nhật Qui",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0965469850",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "117",
+   "fullName": "Nguyễn Trung Kiên",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0962071012",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "119",
+   "fullName": "Nguyễn Nhật Vương",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0976994129",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "122",
+   "fullName": "Trần Trung Hiếu",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0902130132",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "123",
+   "fullName": "Lê Văn Xiếu",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0865038923",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "16",
+   "fullName": "Đỗ Sơn",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0984068071",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "124",
+   "fullName": "Huỳnh Thị Thúy Duy",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0397852974",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "50",
+   "fullName": "Huỳnh Văn Ca",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0353880447",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "125",
+   "fullName": "Lê Duy Khương",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0347247913",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "126",
+   "fullName": "Trần Minh Thuận",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0945846885",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "128",
+   "fullName": "Nguyễn Tấn Tài",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0792079114",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "129",
+   "fullName": "Nguyễn Hoàng Quốc",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0394914230",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "130",
+   "fullName": "Lê Văn Lượng",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0352555863",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "131",
+   "fullName": "Lê Phước Sang",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0395321825",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "132",
+   "fullName": "Nguyễn Thế Quyền",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0348642204",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "133",
+   "fullName": "Trần Thị Thanh Thùy",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Kiểm soát hàng hóa",
+   "phone": "0975916354",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "137",
+   "fullName": "Lê Phước Lợi",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0944167606",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "145",
+   "fullName": "Đồng Ngọc Bảo Trân",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "",
+   "title": "Kế toán",
+   "phone": "0909425934",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "141",
+   "fullName": "Nguyễn Văn Dô",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0326548607",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "142",
+   "fullName": "Nguyễn Văn Vẹn",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0373261472",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "59",
+   "fullName": "Rmah Thiện",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0395490060",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "62",
+   "fullName": "Võ Hoàng Bảo",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0896869004",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "6",
+   "fullName": "Trần Thị Hoài Thanh",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "",
+   "title": "Kế toán tổng hợp",
+   "phone": "0938586582",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "58",
+   "fullName": "Võ Đức Vinh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0896661655",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "28",
+   "fullName": "Trần Thị Ngọc Hà",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0974870741",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "74",
+   "fullName": "KPA THƠM",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0963412154",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "11",
+   "fullName": "Nguyễn Kim Tuyền",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0376165729",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "77",
+   "fullName": "Nguyễn Công Tình",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0353412575",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "13",
+   "fullName": "Hà Văn Thuận",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0325238052",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "20",
+   "fullName": "Nguyễn Bảo Sơn",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0933026511",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "32",
+   "fullName": "Thạch Khnếth",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0849907854",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "25",
+   "fullName": "Rmah Thuyết",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0794537790",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "85",
+   "fullName": "Lưu Chí Hải",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0907370066",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "92",
+   "fullName": "Huỳnh Chí Nguyện",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0559689097",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "2",
+   "fullName": "Nguyễn Trọng Sơn",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0333474364",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "29",
+   "fullName": "Lê Ngọc Hiển",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Nhân viên giao nhận",
+   "phone": "0869842724",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "101",
+   "fullName": "Phạm Minh Trí",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0387773133",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "97",
+   "fullName": "Nguyễn Tấn Tài",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0385834735",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "88",
+   "fullName": "Núth Ra Đi",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0372385253",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "70",
+   "fullName": "Y Nuen Bya",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0347938103",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "75",
+   "fullName": "Lưu Thị Yến Vi",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0854206229",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "109",
+   "fullName": "Lâm Buối",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "105",
+   "fullName": "Hương Tường Sơn",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0925711793",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "138",
+   "fullName": "Bùi Thanh Long",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "134",
+   "fullName": "Đặng Đức Tín",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Tổ trưởng sản xuất",
+   "phone": "0907316676",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "93",
+   "fullName": "Trần Minh Nhật",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0328516445",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "3",
+   "fullName": "Trịnh Ngọc Phát",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Tổ trưởng kho",
+   "phone": "0855252522",
+   "status": "🔴 Đã nghỉ",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "00143",
+   "fullName": "Phan Quốc Tùng",
+   "department": "Phòng Sản xuất",
+   "email": "phanquoctung91@gmail.com",
+   "title": "Tổ trưởng sản xuất",
+   "phone": "0327134351",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "144",
+   "fullName": "Trần Hữu Nghĩa",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0899808056",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "146",
+   "fullName": "Nguyễn Vĩ khang",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Công nhân kho vận",
+   "phone": "0327292703",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "147",
+   "fullName": "Hồ Thành Tuấn",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0367432324",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "148",
+   "fullName": "Nguyễn Thảo Vy",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0817306485",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "149",
+   "fullName": "Huỳnh Lâm Phi Khanh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0965765701",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "150",
+   "fullName": "Đỗ Thị Tiền",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Nhân viên thống kê sản xuất",
+   "phone": "0399392855",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "151",
+   "fullName": "Phan Vũ Quỳnh My",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "",
+   "title": "Thực tập sinh",
+   "phone": "0399099469",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "152",
+   "fullName": "Nguyễn Văn Sinh",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0333958218",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "153",
+   "fullName": "Nguyễn Hoàng Nhật Huy",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0343240785",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "154",
+   "fullName": "Thạch Đa Ri",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Nhân viên giao nhận",
+   "phone": "0369559665",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "155",
+   "fullName": "Tô Minh Phúc",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0949580438",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "162",
+   "fullName": "Nguyễn Bá Trung",
+   "department": "Phòng Kinh doanh Số 3",
+   "email": "",
+   "title": "Trưởng nhóm kinh doanh B2B",
+   "phone": "0906996009",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "157",
+   "fullName": "Hà Minh Tuấn",
+   "department": "Phòng Kinh doanh Số 3",
+   "email": "",
+   "title": "Nhân viên kinh doanh B2B",
+   "phone": "0961513909",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "159",
+   "fullName": "Lê Thị Bảo Chăm",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0396024032",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "160",
+   "fullName": "Trần Lê Thị Mỹ Lệ",
+   "department": "Phòng Tài chính - Kế toán",
+   "email": "",
+   "title": "Kế toán",
+   "phone": "0362670760",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "52",
+   "fullName": "Sơn Phong",
+   "department": "Phòng Kho vận",
+   "email": "",
+   "title": "Nhân viên giao nhận",
+   "phone": "0857224440",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "164",
+   "fullName": "Trần Ngọc Tú",
+   "department": "Phòng Kinh doanh Số 3",
+   "email": "",
+   "title": "Nhân viên admin kinh doanh B2B",
+   "phone": "0933262770",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "165",
+   "fullName": "Trần Thị Yến Phương",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân may",
+   "phone": "0702818610",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "166",
+   "fullName": "Trần Văn Bảo",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0931812317",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  },
+  {
+   "employeeCode": "167",
+   "fullName": "Bùi Út",
+   "department": "Phòng Sản xuất",
+   "email": "",
+   "title": "Công nhân sản xuất",
+   "phone": "0384027773",
+   "status": "🟢 Đang làm",
+   "company": "Nệm Thành Công"
+  }
+ ]
+}

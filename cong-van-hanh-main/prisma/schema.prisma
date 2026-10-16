@@ -1,0 +1,2555 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum UserActivationStatus {
+  NOT_REQUESTED
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum EmployeeStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum CompanyStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum RoleStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  SYNC
+  ARCHIVE
+  VOID
+  LOGIN
+  LOGOUT
+  PERMISSION_CHANGE
+  ACTIVATION_REQUEST
+  ACTIVATION_APPROVE
+  ACTIVATION_REJECT
+}
+
+enum MeetingRoomStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum MeetingStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum MeetingAttendeeRole {
+  ORGANIZER
+  REQUIRED
+  OPTIONAL
+}
+
+enum MeetingResponseStatus {
+  NEEDS_ACTION
+  ACCEPTED
+  DECLINED
+  TENTATIVE
+}
+
+enum MeetingBotStatus {
+  SCHEDULED
+  JOINING
+  WAITING_ROOM
+  IN_CALL
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum MeetingMinutesStatus {
+  PENDING
+  PROCESSING
+  DRAFT
+  APPROVED
+  FAILED
+}
+
+enum MeetingActionItemStatus {
+  DRAFT
+  APPROVED
+  SYNCED
+  CANCELLED
+}
+
+model User {
+  id                     String                  @id @default(cuid())
+  email                  String                  @unique
+  username               String                  @unique
+  passwordHash           String
+  displayName            String
+  requiresPassword       Boolean                 @default(false)
+  activationStatus       UserActivationStatus    @default(NOT_REQUESTED)
+  activationRequestedAt  DateTime?
+  activationReviewedAt   DateTime?
+  status                 UserStatus              @default(ACTIVE)
+  employeeId             String?                 @unique
+  employee               Employee?               @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+  sessions               AuthSession[]
+  userRoles              UserRole[]              @relation("UserRoles")
+  assignedRoles          UserRole[]              @relation("RoleAssignmentsMade")
+  auditLogs              AuditLog[]              @relation("AuditActor")
+  requestsCreated        Request[]               @relation("RequestCreatedBy")
+  requestsAssigned       Request[]               @relation("RequestAssignedTo")
+  requestEvents          RequestEvent[]
+  requestUploads         RequestAttachment[]
+  legalDossierEvents     LegalDossierEvent[]
+  dossiersCancelled      LegalDossier[]          @relation("LegalDossierCancelledBy")
+  followUpsTargeted      FollowUpRequirement[]   @relation("FollowUpTargetUser")
+  followUpsRequested     FollowUpRequirement[]   @relation("FollowUpRequestedBy")
+  followUpsCompleted     FollowUpRequirement[]   @relation("FollowUpCompletedBy")
+  reconciliationRuns     ReconciliationRun[]
+  motivationEvents       MotivationEvent[]
+  motivationReactions    MotivationReaction[]
+  systemSettings         SystemSetting[]
+  meetingsOrganized      Meeting[]               @relation("MeetingOrganizer")
+  meetingsCancelled      Meeting[]               @relation("MeetingCancelledBy")
+  meetingAttendances     MeetingAttendee[]
+  meetingInterests       MeetingInterest[]       @relation("MeetingInterestObserver")
+  meetingMinutesApproved MeetingMinutes[]        @relation("MeetingMinutesApprover")
+  meetingMinutesEdited   MeetingMinutesVersion[] @relation("MeetingMinutesVersionEditor")
+  meetingActionsAssigned MeetingActionItem[]     @relation("MeetingActionAssigneeUser")
+  workbenchLayout        WorkbenchLayout?
+  workbenchItems         WorkbenchItem[]
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  archivedAt             DateTime?
+
+  @@index([status])
+  @@index([activationStatus, activationRequestedAt])
+}
+
+model Employee {
+  id                            String                    @id @default(cuid())
+  employeeCode                  String                    @unique
+  fullName                      String
+  email                         String?                   @unique
+  phone                         String?
+  department                    String?
+  title                         String?
+  status                        EmployeeStatus            @default(ACTIVE)
+  // Thông tin HR mở rộng (đồng bộ từ nguồn nhân sự bản cũ)
+  bankName                      String?
+  bankAccount                   String?
+  identityNumber                String?
+  identityPlace                 String?
+  identityDate                  String?
+  birthDate                     String?
+  permanentResidence            String?
+  personalTaxCode               String?
+  socialInsuranceNumber         String?
+  terminationDate               String?
+  companyId                     String?
+  company                       Company?                  @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  user                          User?
+  personnelIdentityMemberships  PersonnelIdentityMember[]
+  primaryPersonnelIdentityLinks PersonnelIdentityLink[]   @relation("PersonnelIdentityPrimaryEmployee")
+  meetingAttendances            MeetingAttendee[]
+  meetingInterests              MeetingInterest[]
+  meetingActionsAssigned        MeetingActionItem[]
+  createdAt                     DateTime                  @default(now())
+  updatedAt                     DateTime                  @updatedAt
+  archivedAt                    DateTime?
+
+  @@index([status])
+  @@index([companyId])
+}
+
+model Company {
+  id                      String                         @id @default(cuid())
+  code                    String                         @unique
+  legalName               String
+  shortName               String?
+  branchName              String?
+  taxCode                 String?
+  businessRegistration    String?
+  representative          String?
+  address                 String?
+  sendMailLocationKey     String?
+  sendMailAddressPriority String                         @default("new")
+  oldAddress              String?
+  oldProvinceId           String?
+  oldProvinceName         String?
+  oldDistrictId           String?
+  oldDistrictName         String?
+  oldWardId               String?
+  oldWardName             String?
+  status                  CompanyStatus                  @default(ACTIVE)
+  employees               Employee[]
+  requests                Request[]
+  personnelSource         PersonnelSource?
+  documentRegistries      DocumentRegistry[]
+  documentTypeNumbering   DocumentTypeCompanyNumbering[]
+  legalDossiers           LegalDossier[]
+  viettelPostAccounts     ViettelPostAccount[]
+  eshopAccounts           EshopAccount[]
+  createdAt               DateTime                       @default(now())
+  updatedAt               DateTime                       @updatedAt
+  archivedAt              DateTime?
+
+  @@index([status])
+  @@index([taxCode])
+}
+
+// Liên kết nhiều mã nhân sự thuộc cùng một người. Một MNV chỉ được nằm trong
+// một nhóm; primaryEmployeeId là tài khoản quyền chính dùng khi hợp nhất quyền
+// và phạm vi tài liệu.
+model PersonnelIdentityLink {
+  id                String                    @id @default(cuid())
+  name              String
+  primaryEmployeeId String
+  primaryEmployee   Employee                  @relation("PersonnelIdentityPrimaryEmployee", fields: [primaryEmployeeId], references: [id], onDelete: Restrict)
+  status            String                    @default("ACTIVE")
+  note              String?
+  createdById       String?
+  updatedById       String?
+  members           PersonnelIdentityMember[]
+  createdAt         DateTime                  @default(now())
+  updatedAt         DateTime                  @updatedAt
+
+  @@index([status])
+  @@index([primaryEmployeeId])
+}
+
+model PersonnelIdentityMember {
+  linkId     String
+  employeeId String                @unique
+  link       PersonnelIdentityLink @relation(fields: [linkId], references: [id], onDelete: Cascade)
+  employee   Employee              @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  createdAt  DateTime              @default(now())
+
+  @@id([linkId, employeeId])
+  @@index([employeeId])
+}
+
+// Cấu hình nguồn đồng bộ nhân sự theo công ty (bám tab "Nhân sự" ConfigModal cũ).
+model PersonnelSource {
+  id              String    @id @default(cuid())
+  companyId       String    @unique
+  company         Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  apiLink         String // link/ID Google Sheet nguồn
+  sheetName       String
+  headerRow       Int       @default(1)
+  mappings        Json      @default("{}") // { fieldKey: string | string[] }
+  syncMode        String    @default("interval") // interval (mỗi 30') | snapshot (thay danh sách 1 lần/ngày)
+  status          String    @default("ACTIVE") // ACTIVE | INACTIVE
+  lastSyncedAt    DateTime?
+  lastSyncCount   Int?
+  lastSyncMessage String?
+  createdById     String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Tài khoản ViettelPost (Cấu hình Tổng, bám GlobalConfigModal). Nhiều tài khoản theo công ty.
+model ViettelPostAccount {
+  id              String      @id @default(cuid())
+  name            String
+  env             String      @default("PROD") // PROD | DEV
+  username        String
+  password        String? // secret được mã hoá ở tầng ứng dụng
+  token           String? // token dài hạn, được mã hoá ở tầng ứng dụng
+  dashboardToken  String? // secret được mã hoá ở tầng ứng dụng
+  companyScope    Json        @default("[]")
+  departmentScope Json        @default("[]")
+  testOrderCode   String?
+  note            String?
+  status          String      @default("ACTIVE") // ACTIVE | INACTIVE
+  tokenNote       String? // kết quả lấy token gần nhất
+  companyId       String?
+  company         Company?    @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  mailOrders      MailOrder[]
+  createdById     String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([status])
+}
+
+// Đơn gửi thư ViettelPost (sheet 18_Gửi thư).
+model MailOrder {
+  id               String              @id @default(cuid())
+  vtpAccountId     String?
+  vtpAccount       ViettelPostAccount? @relation(fields: [vtpAccountId], references: [id], onDelete: SetNull)
+  companyId        String?
+  orderNumber      String? // mã đơn nội bộ
+  trackingCode     String? // mã vận đơn VTP
+  service          String?
+  serviceName      String?
+  senderName       String
+  senderPhone      String
+  senderAddress    String
+  senderProvince   Int?
+  senderDistrict   Int?
+  senderWard       Int?
+  receiverName     String
+  receiverPhone    String
+  receiverAddress  String
+  receiverProvince Int?
+  receiverDistrict Int?
+  receiverWard     Int?
+  productType      String              @default("TH") // TH | HH
+  productName      String?
+  quantity         Int                 @default(1)
+  weight           Int                 @default(50)
+  productPrice     Int                 @default(0)
+  moneyCollection  Int                 @default(0)
+  orderPayment     Int                 @default(1)
+  note             String?
+  fee              Int?
+  status           String              @default("Đang theo dõi")
+  vtpStatus        String?
+  rawResponse      Json?
+  createdById      String?
+  createdByName    String?
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  @@index([status, createdAt])
+}
+
+// Tài khoản Eshop (mShopKeeper). Nhiều tài khoản theo công ty.
+model EshopAccount {
+  id                   String   @id @default(cuid())
+  name                 String
+  companyKey           String?
+  webBaseUrl           String?
+  webCompanyCode       String?
+  apiDomain            String?
+  apiAppId             String?
+  apiSecret            String? // secret được mã hoá ở tầng ứng dụng
+  webBearer            String? // secret được mã hoá ở tầng ứng dụng
+  webCookie            String? // secret được mã hoá ở tầng ứng dụng
+  companyName          String?
+  companyScope         Json     @default("[]")
+  departmentScope      Json     @default("[]")
+  branchId             String?
+  language             String   @default("vi-VN")
+  backendSpreadsheetId String?
+  dataRootFolderId     String?
+  rawOrdersFolderId    String?
+  snapshotFolderId     String?
+  orderSheetName       String?
+  inventorySheetName   String?
+  note                 String?
+  status               String   @default("ACTIVE")
+  tokenNote            String?
+  companyId            String?
+  company              Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  createdById          String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([status])
+}
+
+// Cấu hình loại văn bản + quy cách đánh số (bám tab "Loại văn bản" ConfigModal cũ, sheet 02).
+model DocumentType {
+  id               String                         @id @default(cuid())
+  name             String                         @unique
+  takesNumber      Boolean                        @default(true)
+  condition        String? // HC giữ 01 bản chính | Hồ sơ cần thời gian scan lưu trữ | Không yêu cầu lưu
+  declarationTypes Json                           @default("[\"partner\",\"period\",\"detail\"]") // partner | period | detail
+  cycle            String? // Theo ngày | Theo tháng | Theo năm | Theo giới hạn
+  startIndex       Int                            @default(1)
+  cycleLimit       Int?
+  formatTokens     Json                           @default("[]") // [{ type, value? }] theo thứ tự
+  status           String                         @default("ACTIVE") // ACTIVE | INACTIVE
+  legacySheetRow   Int?                           @unique // dòng nguồn ở 02_Thông tin chức năng
+  createdById      String?
+  companyNumbering DocumentTypeCompanyNumbering[]
+  registries       DocumentRegistry[]
+  legalDossiers    LegalDossier[]
+  createdAt        DateTime                       @default(now())
+  updatedAt        DateTime                       @updatedAt
+
+  @@index([status])
+}
+
+// Sổ văn bản (sheet 07 cũ): mỗi bản ghi là 1 số văn bản đã cấp.
+// Per-company numbering floors. DocumentType.startIndex remains the default
+// for existing data and companies without an explicit override.
+model DocumentTypeCompanyNumbering {
+  id             String       @id @default(cuid())
+  documentTypeId String
+  documentType   DocumentType @relation(fields: [documentTypeId], references: [id], onDelete: Cascade)
+  companyId      String
+  company        Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  startIndex     Int          @default(1)
+  createdById    String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([documentTypeId, companyId])
+  @@index([companyId])
+}
+
+model DocumentRegistry {
+  id               String        @id @default(cuid())
+  documentNumber   String // số văn bản render ra (vd NTV/01/06/2026/001)
+  serial           Int // STT trong pool
+  cycleKey         String
+  poolKey          String
+  documentTypeId   String?
+  documentType     DocumentType? @relation(fields: [documentTypeId], references: [id], onDelete: SetNull)
+  documentTypeName String // snapshot tên loại
+  companyId        String?
+  company          Company?      @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  companyShort     String // snapshot viết tắt công ty
+  condition        String?
+  partnerName      String? // đối tác / trích yếu
+  partnerAbbr      String? // tên viết tắt đối tác (custom numbering text)
+  signDate         DateTime
+  quantity         Int           @default(1)
+  sealTypes        Json          @default("[]")
+  note             String?
+  status           String        @default("ISSUED") // ISSUED | CANCELLED
+  createdById      String?
+  createdByName    String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  legalDossier     LegalDossier?
+
+  @@unique([poolKey, serial])
+  @@index([companyId, createdAt])
+  @@index([documentTypeId, createdAt])
+  @@index([status, createdAt])
+}
+
+model Role {
+  id                           String            @id @default(cuid())
+  key                          String            @unique
+  name                         String
+  description                  String?
+  rank                         Int               @default(100)
+  status                       RoleStatus        @default(ACTIVE)
+  isSystem                     Boolean           @default(false)
+  isCore                       Boolean           @default(false)
+  includeDefaultEmployeeAccess Boolean           @default(false)
+  userRoles                    UserRole[]
+  rolePermissions              RolePermission[]
+  roleModuleGroups             RoleModuleGroup[]
+  roleModules                  RoleAppModule[]
+  createdAt                    DateTime          @default(now())
+  updatedAt                    DateTime          @updatedAt
+  archivedAt                   DateTime?
+
+  @@index([status, rank])
+}
+
+model Permission {
+  id              String           @id @default(cuid())
+  key             String           @unique
+  module          String
+  action          String
+  description     String?
+  appModuleId     String?
+  appModule       AppModule?       @relation(fields: [appModuleId], references: [id], onDelete: SetNull)
+  rolePermissions RolePermission[]
+  createdAt       DateTime         @default(now())
+
+  @@unique([module, action])
+  @@index([appModuleId])
+}
+
+model ModuleGroup {
+  id               String            @id @default(cuid())
+  key              String            @unique
+  title            String
+  collectionKey    String?
+  collectionTitle  String?
+  description      String?
+  sortOrder        Int               @default(100)
+  isActive         Boolean           @default(true)
+  modules          AppModule[]
+  roleModuleGroups RoleModuleGroup[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@index([collectionKey])
+  @@index([isActive, sortOrder])
+}
+
+model AppModule {
+  id          String          @id @default(cuid())
+  key         String          @unique
+  label       String
+  description String?
+  icon        String?
+  groupId     String
+  group       ModuleGroup     @relation(fields: [groupId], references: [id], onDelete: Restrict)
+  sortOrder   Int             @default(100)
+  isActive    Boolean         @default(true)
+  permissions Permission[]
+  roleModules RoleAppModule[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([groupId])
+  @@index([isActive, sortOrder])
+}
+
+// Bố cục Bàn làm việc được lưu riêng cho từng tài khoản. Dữ liệu nghiệp vụ vẫn
+// nằm ở Request, Meeting và các module nguồn; widget chỉ lưu vị trí và bộ lọc.
+model WorkbenchLayout {
+  id        String            @id @default(cuid())
+  userId    String            @unique
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String            @default("Bàn làm việc của tôi")
+  columns   Int               @default(16)
+  rows      Int               @default(10)
+  widgets   WorkbenchWidget[]
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+model WorkbenchWidget {
+  id        String          @id @default(cuid())
+  layoutId  String
+  layout    WorkbenchLayout @relation(fields: [layoutId], references: [id], onDelete: Cascade)
+  widgetKey String
+  title     String?
+  color     String          @default("teal")
+  x         Int
+  y         Int
+  width     Int
+  height    Int
+  sortOrder Int             @default(0)
+  settings  Json            @default("{}")
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([layoutId, sortOrder])
+  @@index([widgetKey])
+}
+
+// Registry do Admin quản lý. Renderer của widget vẫn được đăng ký trong code,
+// còn trạng thái, giới hạn kích thước và bố cục gợi ý được điều khiển tại đây.
+model WorkbenchWidgetConfig {
+  widgetKey      String   @id
+  label          String
+  description    String
+  icon           String
+  isEnabled      Boolean  @default(true)
+  allowMultiple  Boolean  @default(false)
+  defaultColor   String   @default("teal")
+  defaultWidth   Int
+  defaultHeight  Int
+  minWidth       Int
+  minHeight      Int
+  maxWidth       Int
+  maxHeight      Int
+  defaultVisible Boolean  @default(false)
+  defaultX       Int      @default(0)
+  defaultY       Int      @default(0)
+  sortOrder      Int      @default(100)
+  updatedById    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([isEnabled, sortOrder])
+}
+
+// Nguồn phát sinh công việc được tách khỏi widget để một nguồn có thể cấp dữ
+// liệu cho nhiều cách hiển thị khác nhau.
+model WorkbenchSourceConfig {
+  key          String    @id
+  label        String
+  description  String
+  moduleKey    String?
+  isEnabled    Boolean   @default(true)
+  sortOrder    Int       @default(100)
+  lastSyncedAt DateTime?
+  lastStatus   String    @default("PENDING")
+  lastError    String?
+  itemCount    Int       @default(0)
+  updatedById  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([isEnabled, sortOrder])
+}
+
+// Chỉ mục công việc theo từng người dùng. Bản ghi nguồn vẫn là nguồn sự thật;
+// bảng này chuẩn hóa đơn, giao việc và lịch họp để Bàn làm việc không bỏ sót.
+model WorkbenchItem {
+  id             String    @id @default(cuid())
+  ownerUserId    String
+  owner          User      @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+  sourceKey      String
+  sourceRecordId String
+  kind           String
+  moduleKey      String?
+  title          String
+  summary        String?
+  status         String
+  priority       String?
+  href           String?
+  occurredAt     DateTime
+  dueAt          DateTime?
+  metadata       Json      @default("{}")
+  isActive       Boolean   @default(true)
+  lastSyncedAt   DateTime  @default(now())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([ownerUserId, sourceKey, sourceRecordId])
+  @@index([ownerUserId, isActive, dueAt])
+  @@index([ownerUserId, occurredAt(sort: Desc)])
+  @@index([sourceKey, isActive, lastSyncedAt])
+}
+
+model UserRole {
+  userId       String
+  roleId       String
+  assignedById String?
+  assignedAt   DateTime @default(now())
+  user         User     @relation("UserRoles", fields: [userId], references: [id], onDelete: Cascade)
+  role         Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  assignedBy   User?    @relation("RoleAssignmentsMade", fields: [assignedById], references: [id], onDelete: SetNull)
+
+  @@id([userId, roleId])
+  @@index([roleId])
+  @@index([assignedById])
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@index([permissionId])
+}
+
+model RoleModuleGroup {
+  roleId        String
+  moduleGroupId String
+  role          Role        @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  moduleGroup   ModuleGroup @relation(fields: [moduleGroupId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, moduleGroupId])
+  @@index([moduleGroupId])
+}
+
+model RoleAppModule {
+  roleId      String
+  appModuleId String
+  role        Role      @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  appModule   AppModule @relation(fields: [appModuleId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, appModuleId])
+  @@index([appModuleId])
+}
+
+model AuthSession {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  ipAddress String?
+  userAgent String?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+
+  @@index([userId, expiresAt])
+}
+
+model AuditLog {
+  id         String      @id @default(cuid())
+  actorId    String?
+  actor      User?       @relation("AuditActor", fields: [actorId], references: [id], onDelete: SetNull)
+  action     AuditAction
+  targetType String
+  targetId   String?
+  summary    String
+  metadata   Json?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime    @default(now())
+
+  @@index([actorId, createdAt])
+  @@index([targetType, targetId])
+}
+
+enum RequestStatus {
+  SUBMITTED
+  IN_PROGRESS
+  NEEDS_INFO
+  APPROVED
+  REJECTED
+  COMPLETED
+  CANCELLED
+}
+
+enum RequestEventType {
+  SUBMITTED
+  PROCESSING
+  NEEDS_INFO
+  APPROVED
+  REJECTED
+  COMPLETED
+  CANCELLED
+  COMMENT
+}
+
+model Request {
+  id          String        @id @default(cuid())
+  code        String        @unique
+  serviceCode String
+  title       String
+  status      RequestStatus @default(SUBMITTED)
+  priority    String?
+  note        String?
+  payload     Json          @default("{}")
+
+  createdById  String
+  createdBy    User     @relation("RequestCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  assignedToId String?
+  assignedTo   User?    @relation("RequestAssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
+  companyId    String?
+  company      Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+
+  events             RequestEvent[]
+  attachments        RequestAttachment[]
+  items              RequestItem[]
+  digitalSignature   DigitalSignatureWorkflow?
+  followUps          FollowUpRequirement[]
+  meetingActionItems MeetingActionItem[]
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  completedAt DateTime?
+  archivedAt  DateTime?
+
+  @@index([createdById, createdAt(sort: Desc)])
+  @@index([status, createdAt(sort: Desc)])
+  @@index([serviceCode, status, createdAt(sort: Desc)])
+  @@index([assignedToId, status])
+}
+
+// Một PDF bất biến, một pháp nhân và hàng chờ bền vững cho luồng ký số V3.
+model DigitalSignatureWorkflow {
+  id                   String   @id @default(cuid())
+  requestId            String   @unique
+  request              Request  @relation(fields: [requestId], references: [id], onDelete: Restrict)
+  companyId            String
+  state                String   @default("AWAITING_UPLOAD")
+  originalFileId       String?
+  originalSha256       String?
+  placements           Json     @default("[]")
+  summary              Json?
+  summaryModel         String?
+  approvedSnapshotHash String?
+  bodApprovedById      String?
+  bodApprovedAt        DateTime?
+  adminSignedById      String?
+  signedAt             DateTime?
+  outputFileId         String?
+  completedPlacements  Int      @default(0)
+  runtime              Json     @default("{}")
+  attempts             Int      @default(0)
+  nextAttemptAt        DateTime @default(now())
+  leaseToken           String?
+  leaseExpiresAt       DateTime?
+  error                String?
+  version              Int      @default(0)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([state, nextAttemptAt])
+  @@index([companyId, state])
+}
+
+// Dòng nghiệp vụ trong một Request. Bản GAS lưu các dòng này trong JSON của
+// 98_Inbox; V3 tách ra để Hiệu đính có thể khóa/truy vết đúng từng hồ sơ.
+model RequestItem {
+  id              String        @id @default(cuid())
+  requestId       String
+  request         Request       @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  itemIndex       Int
+  serviceCode     String
+  title           String?
+  status          String        @default("PENDING")
+  payload         Json          @default("{}")
+  legacySourceRow Int?
+  legalDossier    LegalDossier?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@unique([requestId, itemIndex])
+  @@index([serviceCode, status])
+}
+
+// Hồ sơ pháp lý cần scan hoặc nạp file lưu trữ. Số văn bản là quan hệ tùy
+// chọn vì hồ sơ không lấy số vẫn phải đi qua hàng đợi Hiệu đính.
+model LegalDossier {
+  id                    String                @id @default(cuid())
+  requestItemId         String                @unique
+  requestItem           RequestItem           @relation(fields: [requestItemId], references: [id], onDelete: Cascade)
+  legacyRegistryId      String?               @unique
+  documentRegistryId    String?               @unique
+  documentRegistry      DocumentRegistry?     @relation(fields: [documentRegistryId], references: [id], onDelete: SetNull)
+  companyId             String?
+  company               Company?              @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  documentTypeId        String?
+  documentType          DocumentType?         @relation(fields: [documentTypeId], references: [id], onDelete: SetNull)
+  companyNameSnapshot   String?
+  companyShortSnapshot  String?
+  documentTypeSnapshot  String?
+  conditionSnapshot     String?
+  takesNumber           Boolean               @default(false)
+  orderStatus           String                @default("PENDING")
+  fileStatus            String                @default("PENDING_UPLOAD")
+  numberStatus          String                @default("UNDECIDED")
+  submissionOfficeKey   String?
+  submissionOfficeLabel String?
+  generatedStorageName  String?
+  storageCounterparty   String?
+  storageSummary        String?
+  storageRevision       Int?
+  storageIssuedDate     DateTime?
+  cancelledAt           DateTime?
+  cancelledById         String?
+  cancelledBy           User?                 @relation("LegalDossierCancelledBy", fields: [cancelledById], references: [id], onDelete: SetNull)
+  cancelledReason       String?
+  events                LegalDossierEvent[]
+  followUps             FollowUpRequirement[]
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+
+  @@index([fileStatus, orderStatus, createdAt(sort: Desc)])
+  @@index([submissionOfficeKey, fileStatus])
+  @@index([companyId, documentTypeId])
+}
+
+model LegalDossierEvent {
+  id         String       @id @default(cuid())
+  dossierId  String
+  dossier    LegalDossier @relation(fields: [dossierId], references: [id], onDelete: Cascade)
+  type       String
+  actorId    String?
+  actor      User?        @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  fromStatus String?
+  toStatus   String?
+  note       String?
+  metadata   Json         @default("{}")
+  createdAt  DateTime     @default(now())
+
+  @@index([dossierId, createdAt])
+  @@index([type, createdAt])
+}
+
+model FollowUpRequirement {
+  id            String        @id @default(cuid())
+  dossierId     String?
+  dossier       LegalDossier? @relation(fields: [dossierId], references: [id], onDelete: Cascade)
+  requestId     String
+  request       Request       @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  targetUserId  String
+  targetUser    User          @relation("FollowUpTargetUser", fields: [targetUserId], references: [id], onDelete: Restrict)
+  type          String        @default("SIGNED_COPY")
+  status        String        @default("PENDING")
+  reason        String
+  blocksModules Json          @default("[]")
+  requestedAt   DateTime      @default(now())
+  requestedById String?
+  requestedBy   User?         @relation("FollowUpRequestedBy", fields: [requestedById], references: [id], onDelete: SetNull)
+  completedAt   DateTime?
+  completedById String?
+  completedBy   User?         @relation("FollowUpCompletedBy", fields: [completedById], references: [id], onDelete: SetNull)
+  metadata      Json          @default("{}")
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([targetUserId, status])
+  @@index([requestId, status])
+  @@index([dossierId, status])
+}
+
+model RequestEvent {
+  id         String           @id @default(cuid())
+  requestId  String
+  request    Request          @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  actorId    String?
+  actor      User?            @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  type       RequestEventType
+  fromStatus RequestStatus?
+  toStatus   RequestStatus?
+  note       String?
+  createdAt  DateTime         @default(now())
+
+  @@index([requestId, createdAt])
+}
+
+model RequestAttachment {
+  id           String      @id @default(cuid())
+  requestId    String
+  request      Request     @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  fileObjectId String?
+  fileObject   FileObject? @relation(fields: [fileObjectId], references: [id], onDelete: SetNull)
+  fileName     String
+  fileUrl      String
+  mimeType     String?
+  sizeBytes    Int?
+  uploadedById String?
+  uploadedBy   User?       @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+  createdAt    DateTime    @default(now())
+
+  @@index([requestId])
+  @@index([fileObjectId])
+}
+
+enum MotivationStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+// Bộ tương tác (reaction set) cho bản tin / thông điệp.
+model ReactionSet {
+  id        String            @id @default(cuid())
+  key       String            @unique
+  name      String
+  // options: [{ "label": "Mặt cười", "value": "smile", "symbol": "😊", "tone": "emerald" }]
+  options   Json              @default("[]")
+  status    MotivationStatus  @default(ACTIVE)
+  events    MotivationEvent[]
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+// Tag dùng cho kho ứng dụng/Công cụ hỗ trợ, tách khỏi bộ reaction của bản tin.
+model SupportToolTag {
+  id            String    @id @default(cuid())
+  name          String    @unique
+  status        String    @default("ACTIVE") // ACTIVE | INACTIVE | ARCHIVED
+  createdByName String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  archivedAt    DateTime?
+
+  @@index([status, name])
+}
+
+// Bản tin / Thông điệp hiển thị ở banner dashboard. Cấu hình qua /cau-hinh/thong-bao.
+model MotivationEvent {
+  id                String               @id @default(cuid())
+  kind              String               @default("message") // message (thông điệp) | event (sự kiện) | notice (thông báo)
+  title             String
+  body              String?
+  location          String?
+  imageUrl          String?
+  imageId           String?
+  imageUrls         Json                 @default("[]")
+  imageIds          Json                 @default("[]")
+  thumbnailUrl      String?
+  thumbnailId       String?
+  priority          Int                  @default(1)
+  saveResponse      Boolean              @default(true)
+  status            MotivationStatus     @default(ACTIVE)
+  startAt           DateTime?
+  endAt             DateTime?
+  // Kênh Notifier
+  displayChannel    String               @default("both") // webapp | notifier | both
+  level             String               @default("normal") // normal | success | warning | urgent
+  displayMode       String               @default("toast") // toast | center_popup | sticky_warning | image_portrait | image_landscape | image_only
+  popupContentMode  String               @default("full") // full | hide_message | hide_title | image_only
+  closePolicy       String               @default("auto") // auto | manual_close | require_ack
+  autoDismissMs     Int?
+  requireAck        Boolean              @default(false)
+  bypassSnooze      Boolean              @default(false)
+  targetUrl         String?
+  reminderTimes     Json                 @default("[]")
+  linkedTask        Json?
+  // Đối tượng nhận
+  targetScope       String               @default("all") // all | company | department | employee
+  targetCompanies   Json                 @default("[]")
+  targetDepartments Json                 @default("[]")
+  targetEmployees   Json                 @default("[]")
+  reactionSetId     String?
+  reactionSet       ReactionSet?         @relation(fields: [reactionSetId], references: [id], onDelete: SetNull)
+  reactions         MotivationReaction[]
+  createdById       String?
+  createdBy         User?                @relation(fields: [createdById], references: [id], onDelete: SetNull)
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  archivedAt        DateTime?
+
+  @@index([status, priority])
+  @@index([startAt, endAt])
+}
+
+// Kho cấu hình Tổng (key-value). Định nghĩa key nằm trong code; bảng này lưu giá trị.
+model SystemSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String?
+  updatedById String?
+  updatedBy   User?    @relation(fields: [updatedById], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Lịch họp, booking phòng, Recall và biên bản AI.
+// File âm thanh/video không lưu trực tiếp trong PostgreSQL. Database chỉ giữ
+// metadata, transcript có thời hạn, biên bản đã duyệt và liên kết giao việc.
+// ---------------------------------------------------------------------------
+
+model MeetingRoom {
+  id                  String            @id @default(cuid())
+  code                String            @unique
+  name                String
+  location            String?
+  floor               String?
+  capacity            Int               @default(1)
+  amenities           Json              @default("[]")
+  description         String?
+  googleCalendarId    String?
+  timezone            String            @default("Asia/Ho_Chi_Minh")
+  openTime            String            @default("08:00")
+  closeTime           String            @default("18:00")
+  bufferBeforeMinutes Int               @default(0)
+  bufferAfterMinutes  Int               @default(0)
+  maxBookingMinutes   Int               @default(480)
+  color               String            @default("#0f766e")
+  status              MeetingRoomStatus @default(ACTIVE)
+  sortOrder           Int               @default(100)
+  createdById         String?
+  updatedById         String?
+  meetings            Meeting[]
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  archivedAt          DateTime?
+
+  @@index([status, sortOrder])
+  @@index([googleCalendarId])
+}
+
+model Meeting {
+  id                     String                @id @default(cuid())
+  code                   String                @unique
+  title                  String
+  agenda                 String
+  startsAt               DateTime
+  endsAt                 DateTime
+  blockedStartsAt        DateTime
+  blockedEndsAt          DateTime
+  timezone               String                @default("Asia/Ho_Chi_Minh")
+  locationText           String?
+  mode                   String                @default("HYBRID") // ONSITE | ONLINE | HYBRID
+  visibility             String                @default("PARTICIPANTS") // PARTICIPANTS | PRIVATE
+  status                 MeetingStatus         @default(SCHEDULED)
+  allowAttendeeConflict  Boolean               @default(false)
+  aiEnabled              Boolean               @default(true)
+  recallEnabled          Boolean               @default(true)
+  roomId                 String?
+  room                   MeetingRoom?          @relation(fields: [roomId], references: [id], onDelete: Restrict)
+  organizerId            String
+  organizer              User                  @relation("MeetingOrganizer", fields: [organizerId], references: [id], onDelete: Restrict)
+  googleCalendarEventId  String?               @unique
+  googleCalendarHtmlLink String?
+  googleMeetUrl          String?
+  googleMeetCode         String?
+  calendarSyncStatus     String                @default("PENDING") // PENDING | SYNCED | FAILED | NOT_REQUIRED
+  calendarLastSyncedAt   DateTime?
+  calendarError          String?
+  attendees              MeetingAttendee[]
+  botRuns                MeetingBotRun[]
+  transcript             MeetingTranscript?
+  minutes                MeetingMinutes?
+  actionItems            MeetingActionItem[]
+  webhookEvents          MeetingWebhookEvent[]
+  cancelledAt            DateTime?
+  cancelledById          String?
+  cancelledBy            User?                 @relation("MeetingCancelledBy", fields: [cancelledById], references: [id], onDelete: SetNull)
+  cancellationReason     String?
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
+
+  @@index([roomId, startsAt, endsAt])
+  @@index([organizerId, startsAt(sort: Desc)])
+  @@index([status, startsAt])
+}
+
+model MeetingWebhookEvent {
+  id              String    @id @default(cuid())
+  provider        String    @default("RECALL")
+  providerEventId String    @unique
+  eventType       String
+  meetingId       String?
+  meeting         Meeting?  @relation(fields: [meetingId], references: [id], onDelete: SetNull)
+  payload         Json
+  processedAt     DateTime?
+  error           String?
+  createdAt       DateTime  @default(now())
+
+  @@index([provider, eventType, createdAt(sort: Desc)])
+  @@index([meetingId, createdAt(sort: Desc)])
+}
+
+model MeetingAttendee {
+  id             String                @id @default(cuid())
+  meetingId      String
+  meeting        Meeting               @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  employeeId     String?
+  employee       Employee?             @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+  userId         String?
+  user           User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
+  email          String
+  displayName    String
+  role           MeetingAttendeeRole   @default(REQUIRED)
+  responseStatus MeetingResponseStatus @default(NEEDS_ACTION)
+  isExternal     Boolean               @default(false)
+  invitedAt      DateTime?
+  respondedAt    DateTime?
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
+
+  @@unique([meetingId, email])
+  @@index([employeeId, meetingId])
+  @@index([userId, meetingId])
+  @@index([email, meetingId])
+}
+
+model MeetingInterest {
+  observerUserId String
+  employeeId     String
+  observer       User     @relation("MeetingInterestObserver", fields: [observerUserId], references: [id], onDelete: Cascade)
+  employee       Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+
+  @@id([observerUserId, employeeId])
+  @@index([employeeId])
+}
+
+model MeetingBotRun {
+  id                    String           @id @default(cuid())
+  meetingId             String
+  meeting               Meeting          @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  provider              String           @default("RECALL")
+  providerBotId         String?          @unique
+  status                MeetingBotStatus @default(SCHEDULED)
+  joinAt                DateTime
+  joinedAt              DateTime?
+  leftAt                DateTime?
+  statusSubCode         String?
+  statusMessage         String?
+  recordingStatus       String           @default("PENDING")
+  transcriptStatus      String           @default("PENDING")
+  webhookLastReceivedAt DateTime?
+  rawMetadata           Json             @default("{}")
+  error                 String?
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+
+  @@index([meetingId, createdAt(sort: Desc)])
+  @@index([status, joinAt])
+}
+
+model MeetingTranscript {
+  id                   String    @id @default(cuid())
+  meetingId            String    @unique
+  meeting              Meeting   @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  provider             String    @default("RECALL")
+  providerTranscriptId String?
+  status               String    @default("PENDING") // PENDING | READY | FAILED | PURGED
+  language             String    @default("vi")
+  contentText          String?
+  segments             Json      @default("[]")
+  speakerMap           Json      @default("{}")
+  wordCount            Int       @default(0)
+  checksum             String?
+  receivedAt           DateTime?
+  expiresAt            DateTime?
+  purgedAt             DateTime?
+  error                String?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@index([status, expiresAt])
+  @@index([provider, providerTranscriptId])
+}
+
+model MeetingMinutes {
+  id                       String                  @id @default(cuid())
+  meetingId                String                  @unique
+  meeting                  Meeting                 @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  status                   MeetingMinutesStatus    @default(PENDING)
+  summary                  String?
+  content                  Json                    @default("{}")
+  decisions                Json                    @default("[]")
+  risks                    Json                    @default("[]")
+  openQuestions            Json                    @default("[]")
+  currentVersion           Int                     @default(0)
+  generatedByModel         String?
+  promptVersion            String?
+  sourceTranscriptChecksum String?
+  generatedAt              DateTime?
+  approvedById             String?
+  approvedBy               User?                   @relation("MeetingMinutesApprover", fields: [approvedById], references: [id], onDelete: SetNull)
+  approvedAt               DateTime?
+  error                    String?
+  versions                 MeetingMinutesVersion[]
+  actionItems              MeetingActionItem[]
+  createdAt                DateTime                @default(now())
+  updatedAt                DateTime                @updatedAt
+
+  @@index([status, updatedAt(sort: Desc)])
+}
+
+model MeetingMinutesVersion {
+  id         String         @id @default(cuid())
+  minutesId  String
+  minutes    MeetingMinutes @relation(fields: [minutesId], references: [id], onDelete: Cascade)
+  version    Int
+  source     String         @default("AI") // AI | MANUAL | APPROVAL
+  content    Json
+  editedById String?
+  editedBy   User?          @relation("MeetingMinutesVersionEditor", fields: [editedById], references: [id], onDelete: SetNull)
+  createdAt  DateTime       @default(now())
+
+  @@unique([minutesId, version])
+  @@index([editedById, createdAt(sort: Desc)])
+}
+
+model MeetingActionItem {
+  id                     String                  @id @default(cuid())
+  meetingId              String
+  meeting                Meeting                 @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  minutesId              String?
+  minutes                MeetingMinutes?         @relation(fields: [minutesId], references: [id], onDelete: SetNull)
+  sortOrder              Int                     @default(0)
+  title                  String
+  description            String?
+  status                 MeetingActionItemStatus @default(DRAFT)
+  assigneeEmployeeId     String?
+  assigneeEmployee       Employee?               @relation(fields: [assigneeEmployeeId], references: [id], onDelete: SetNull)
+  assigneeUserId         String?
+  assigneeUser           User?                   @relation("MeetingActionAssigneeUser", fields: [assigneeUserId], references: [id], onDelete: SetNull)
+  assigneeNameSnapshot   String?
+  dueAt                  DateTime?
+  sourceTimestampSeconds Int?
+  sourceText             String?
+  confidence             Decimal?                @db.Decimal(5, 4)
+  approvedAt             DateTime?
+  todoRequestId          String?
+  todoRequest            Request?                @relation(fields: [todoRequestId], references: [id], onDelete: SetNull)
+  todoOutputId           String?
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+
+  @@index([meetingId, status, sortOrder])
+  @@index([assigneeEmployeeId, status])
+  @@index([assigneeUserId, status])
+  @@index([todoRequestId])
+}
+
+// Phản hồi của từng nhân sự cho một bản tin (tương đương PhanHoiSuKien).
+model MotivationReaction {
+  eventId   String
+  event     MotivationEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  value     String
+  label     String?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@id([eventId, userId])
+  @@index([eventId])
+}
+
+// ---------------------------------------------------------------------------
+// Đánh giá nhân sự.
+//
+// Bản GAS đã dùng một hợp đồng record-type chung cho 28 loại thực thể. Bảng
+// này giữ nguyên hợp đồng đó để nạp không mất dữ liệu, nhưng bổ sung index
+// PostgreSQL theo loại/cha/trạng thái/mã để không phải quét JSON như Google
+// Sheets. Các màn hình domain đọc/ghi qua repository thay vì đụng JSON trực
+// tiếp.
+// ---------------------------------------------------------------------------
+
+model EvaluationRecord {
+  id                String   @id @default(cuid())
+  recordType        String
+  parentId          String?
+  code              String?
+  name              String?
+  status            String   @default("active")
+  content           Json     @default("{}")
+  text              String?
+  note              String?
+  legacyId          String?  @unique
+  legacySheetName   String?
+  legacyRowNumber   Int?
+  sourceFingerprint String?
+  createdByName     String?
+  updatedByName     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([recordType, status])
+  @@index([recordType, parentId])
+  @@index([recordType, code])
+  @@index([legacySheetName, legacyRowNumber])
+}
+
+model ConfigurationRecord {
+  id          String   @id @default(cuid())
+  recordType  String
+  sourceSheet String
+  sourceRow   Int
+  code        String?
+  parentCode  String?
+  name        String?
+  status      String?
+  content     Json     @default("{}")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([recordType, sourceSheet, sourceRow])
+  @@index([recordType, status])
+  @@index([recordType, code])
+}
+
+// ---------------------------------------------------------------------------
+// Tuyển dụng.
+// ---------------------------------------------------------------------------
+
+model RecruitmentSourceDefinition {
+  id              String   @id @default(cuid())
+  name            String   @unique
+  mapping         Json     @default("{}")
+  status          String   @default("ACTIVE")
+  legacyRowNumber Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status, name])
+}
+
+model RecruitmentCampaign {
+  id              String                   @id @default(cuid())
+  code            String
+  source          String
+  company         String?
+  location        String?
+  block           String?
+  department      String?
+  division        String?
+  team            String?
+  groupName       String?
+  orgPath         String?
+  position        String
+  cvType          String?
+  campaignName    String?
+  startDate       DateTime?
+  endDate         DateTime?
+  availableOrder  String?
+  status          String                   @default("OPEN")
+  legacyRowNumber Int?
+  raw             Json                     @default("{}")
+  applications    RecruitmentApplication[]
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+
+  @@unique([code, source])
+  @@index([status, endDate])
+  @@index([department, position])
+}
+
+model RecruitmentCandidate {
+  id           String                   @id @default(cuid())
+  fullName     String
+  phone        String?
+  email        String?
+  birthDate    String?
+  address      String?
+  applications RecruitmentApplication[]
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+
+  @@index([phone])
+  @@index([email])
+  @@index([fullName])
+}
+
+model RecruitmentApplication {
+  id              String                      @id @default(cuid())
+  applicationCode String                      @unique
+  candidateCode   String?
+  candidateId     String
+  candidate       RecruitmentCandidate        @relation(fields: [candidateId], references: [id], onDelete: Restrict)
+  campaignId      String?
+  campaign        RecruitmentCampaign?        @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  requisitionCode String?
+  company         String?
+  department      String?
+  position        String?
+  level           String?
+  source          String?
+  receivedAt      DateTime?
+  cvUrl           String?
+  recruiter       String?
+  status          String?
+  note            String?
+  legacyRowNumber Int?                        @unique
+  raw             Json                        @default("{}")
+  journey         RecruitmentJourney?
+  interviews      RecruitmentInterview[]
+  assignments     RecruitmentAssignment[]
+  scorecards      RecruitmentScorecard[]
+  timeline        RecruitmentTimeline[]
+  publication     RecruitmentPublication?
+  offers          RecruitmentOffer[]
+  legacySnapshots RecruitmentLegacySnapshot[]
+  createdAt       DateTime                    @default(now())
+  updatedAt       DateTime                    @updatedAt
+
+  @@index([candidateCode])
+  @@index([requisitionCode])
+  @@index([department, position])
+  @@index([status, receivedAt])
+}
+
+model RecruitmentRequisition {
+  id                String    @id @default(cuid())
+  requisitionCode   String    @unique
+  jobCode           String?
+  department        String?
+  position          String
+  level             String?
+  company           String?
+  intakeStatus      String?
+  recruitmentStatus String?
+  recruiter         String?
+  reason            String?
+  requestedQuantity Int?
+  cancellationStage String?
+  receivedAt        DateTime?
+  onboardDueAt      DateTime?
+  quarter           String?
+  year              Int?
+  note              String?
+  legacyRowNumber   Int?      @unique
+  raw               Json      @default("{}")
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([recruitmentStatus, receivedAt])
+  @@index([department, position])
+}
+
+model RecruitmentIntake {
+  id              String   @id @default(cuid())
+  fullName        String?
+  phone           String?
+  email           String?
+  position        String?
+  source          String?
+  requisitionCode String?
+  cvUrl           String?
+  status          String   @default("PENDING")
+  legacyRowNumber Int?     @unique
+  raw             Json     @default("{}")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status, createdAt])
+  @@index([phone])
+}
+
+model RecruitmentJourney {
+  id              String                 @id @default(cuid())
+  applicationId   String                 @unique
+  application     RecruitmentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  stageKey        String                 @default("cv_screening")
+  progressKey     String                 @default("pending")
+  outcomeKey      String?
+  nextAction      String?
+  ownerEmployeeId String?
+  ownerName       String?
+  dueAt           DateTime?
+  testStatus      String?
+  offerStatus     String?
+  lastContactAt   DateTime?
+  contactAttempts Int                    @default(0)
+  updatedByName   String?
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+
+  @@index([stageKey, progressKey])
+  @@index([ownerEmployeeId, dueAt])
+}
+
+model RecruitmentInterview {
+  id            String                  @id @default(cuid())
+  applicationId String
+  application   RecruitmentApplication  @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  roundKey      String
+  roundLabel    String
+  startAt       DateTime?
+  location      String?
+  meetingLink   String?
+  status        String                  @default("scheduled")
+  note          String?
+  createdByName String?
+  updatedByName String?
+  assignments   RecruitmentAssignment[]
+  scorecards    RecruitmentScorecard[]
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@index([applicationId, roundKey])
+  @@index([startAt, status])
+}
+
+model RecruitmentAssignment {
+  id                 String                 @id @default(cuid())
+  interviewId        String
+  interview          RecruitmentInterview   @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  applicationId      String
+  application        RecruitmentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  roundKey           String
+  reviewerEmployeeId String?
+  reviewerName       String
+  roleKey            String
+  roleLabel          String
+  status             String                 @default("assigned")
+  scorecards         RecruitmentScorecard[]
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+
+  @@index([reviewerEmployeeId, status])
+  @@index([applicationId, roundKey])
+}
+
+model RecruitmentScorecard {
+  id                 String                 @id @default(cuid())
+  interviewId        String?
+  interview          RecruitmentInterview?  @relation(fields: [interviewId], references: [id], onDelete: SetNull)
+  assignmentId       String?
+  assignment         RecruitmentAssignment? @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
+  applicationId      String
+  application        RecruitmentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  roundKey           String
+  roundLabel         String
+  reviewerEmployeeId String?
+  reviewerName       String?
+  roleKey            String?
+  roleLabel          String?
+  scoringMode        String?
+  status             String                 @default("draft")
+  finalScore         Decimal?               @db.Decimal(8, 3)
+  decision           String?
+  overallComment     String?
+  criteriaSetId      String?
+  criteriaSetName    String?
+  jdPosition         String?
+  version            Int                    @default(1)
+  editRevision       Int                    @default(0)
+  submittedAt        DateTime?
+  items              RecruitmentScoreItem[]
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+
+  @@index([applicationId, roundKey, version])
+  @@index([reviewerEmployeeId, status])
+}
+
+model RecruitmentScoreItem {
+  id             String               @id @default(cuid())
+  scorecardId    String
+  scorecard      RecruitmentScorecard @relation(fields: [scorecardId], references: [id], onDelete: Cascade)
+  sectionKey     String?
+  groupKey       String?
+  groupName      String?
+  itemKey        String?
+  itemName       String?
+  criterionId    String?
+  criterionName  String?
+  weight         Decimal?             @db.Decimal(8, 3)
+  score          Decimal?             @db.Decimal(8, 3)
+  note           String?
+  evidence       String?
+  level          Int?
+  bonusTechnical Boolean              @default(false)
+  bonusLearning  Boolean              @default(false)
+  meta           Json                 @default("{}")
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+
+  @@index([scorecardId, sectionKey])
+}
+
+model RecruitmentTimeline {
+  id              String                 @id @default(cuid())
+  applicationId   String
+  application     RecruitmentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  eventType       String
+  fromValue       String?
+  toValue         String?
+  title           String
+  detail          String?
+  actorEmployeeId String?
+  actorName       String?
+  createdAt       DateTime               @default(now())
+
+  @@index([applicationId, createdAt])
+}
+
+model RecruitmentPublication {
+  id              String                 @id @default(cuid())
+  applicationId   String                 @unique
+  application     RecruitmentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  accessToken     String                 @unique
+  status          String                 @default("draft")
+  publicStatus    String?
+  summary         String?
+  strengths       String?
+  development     String?
+  publishedScore  Decimal?               @db.Decimal(8, 3)
+  roundVersions   Json                   @default("{}")
+  publishedAt     DateTime?
+  publishedByName String?
+  expiresAt       DateTime?
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+}
+
+model RecruitmentOffer {
+  id               String                  @id @default(cuid())
+  applicationId    String?
+  application      RecruitmentApplication? @relation(fields: [applicationId], references: [id], onDelete: SetNull)
+  candidateCode    String?
+  candidateName    String
+  phone            String?
+  email            String?
+  department       String?
+  position         String?
+  level            String?
+  requisitionCode  String?
+  source           String?
+  status           String?
+  ownerName        String?
+  onboardAt        DateTime?
+  probationEndAt   DateTime?
+  company          String?
+  compensation     Json                    @default("{}")
+  employmentRecord Json                    @default("{}")
+  note             String?
+  profileUrl       String?
+  legacySource     String
+  legacyRowNumber  Int
+  raw              Json                    @default("{}")
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+
+  @@unique([legacySource, legacyRowNumber])
+  @@index([candidateCode])
+  @@index([status, onboardAt])
+  @@index([department, position])
+}
+
+model RecruitmentConfigRecord {
+  id          String   @id @default(cuid())
+  recordType  String
+  code        String?
+  name        String?
+  status      String?
+  sourceSheet String
+  sourceRow   Int
+  content     Json     @default("{}")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([sourceSheet, sourceRow])
+  @@index([recordType, status])
+  @@index([recordType, code])
+}
+
+model RecruitmentLegacySnapshot {
+  id              String                 @id @default(cuid())
+  applicationId   String
+  application     RecruitmentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  kind            String
+  sourceSheet     String
+  sourceRow       Int?
+  payload         Json
+  sourceUpdatedAt DateTime?
+  createdAt       DateTime               @default(now())
+
+  @@index([applicationId, kind])
+  @@index([sourceSheet, sourceRow])
+}
+
+// ---------------------------------------------------------------------------
+// Nền tảng chuyển dữ liệu từ Google Sheet/Drive sang PostgreSQL + object storage.
+// Các bảng này giữ lịch sử đầy đủ; importer không được bỏ qua dòng lỗi âm thầm.
+// ---------------------------------------------------------------------------
+
+model MigrationSource {
+  id          String          @id @default(cuid())
+  key         String          @unique
+  name        String
+  kind        String // GOOGLE_SHEET | GOOGLE_DRIVE | FILE_IMPORT | API | LEGACY_DATABASE
+  status      String          @default("ACTIVE") // ACTIVE | INACTIVE | ARCHIVED
+  config      Json            @default("{}")
+  secretRef   String?
+  createdById String?
+  lastRunAt   DateTime?
+  runs        MigrationRun[]
+  externalIds ExternalIdMap[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  archivedAt  DateTime?
+
+  @@index([kind, status])
+}
+
+model MigrationRun {
+  id                   String            @id @default(cuid())
+  sourceId             String
+  source               MigrationSource   @relation(fields: [sourceId], references: [id], onDelete: Restrict)
+  mode                 String            @default("SYNC") // PREVIEW | APPLY | SYNC | BACKFILL
+  status               String            @default("PENDING") // PENDING | RUNNING | COMPLETED | PARTIAL | FAILED | CANCELLED
+  phase                String?
+  rowsRead             Int               @default(0)
+  rowsValid            Int               @default(0)
+  rowsCreated          Int               @default(0)
+  rowsUpdated          Int               @default(0)
+  rowsSkipped          Int               @default(0)
+  rowsFailed           Int               @default(0)
+  checksum             String?
+  previewToken         String?           @unique
+  previewExpiresAt     DateTime?
+  cursor               Json?
+  summary              String?
+  metadata             Json              @default("{}")
+  sourceConfigSnapshot Json              @default("{}")
+  triggeredById        String?
+  records              MigrationRecord[]
+  issues               MigrationIssue[]
+  startedAt            DateTime          @default(now())
+  completedAt          DateTime?
+  createdAt            DateTime          @default(now())
+
+  @@index([sourceId, startedAt(sort: Desc)])
+  @@index([status, startedAt(sort: Desc)])
+}
+
+model MigrationRecord {
+  id             String       @id @default(cuid())
+  runId          String
+  run            MigrationRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  rowNumber      Int?
+  entityType     String
+  externalId     String?
+  internalId     String?
+  fingerprint    String?
+  status         String       @default("PENDING") // PENDING | VALID | IMPORTED | SKIPPED | FAILED
+  rawData        Json
+  normalizedData Json?
+  issueCount     Int          @default(0)
+  processedAt    DateTime?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([runId, rowNumber])
+  @@index([runId, status])
+  @@index([entityType, externalId])
+}
+
+model MigrationIssue {
+  id         String       @id @default(cuid())
+  runId      String
+  run        MigrationRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  severity   String       @default("ERROR") // INFO | WARNING | ERROR
+  rowNumber  Int?
+  externalId String?
+  field      String?
+  code       String
+  message    String
+  rawData    Json?
+  createdAt  DateTime     @default(now())
+
+  @@index([runId, severity])
+  @@index([code, createdAt])
+}
+
+model ExternalIdMap {
+  id          String          @id @default(cuid())
+  sourceId    String
+  source      MigrationSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  entityType  String
+  externalId  String
+  internalId  String
+  fingerprint String?
+  metadata    Json            @default("{}")
+  lastSeenAt  DateTime        @default(now())
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@unique([sourceId, entityType, externalId])
+  @@index([entityType, internalId])
+}
+
+// Một lần chạy đối soát Urbox ↔ BaseReward. Hai file nguồn và toàn bộ dòng
+// chuẩn hóa được giữ lại để có thể kiểm tra/chạy lại, thay cho luồng GAS chỉ
+// sinh file đầu ra rồi mất input.
+model ReconciliationRun {
+  id                  String                     @id @default(cuid())
+  periodKey           String
+  month               Int
+  year                Int
+  fromDate            DateTime
+  toDate              DateTime
+  attempt             Int                        @default(1)
+  status              String                     @default("PENDING")
+  createdById         String?
+  createdBy           User?                      @relation(fields: [createdById], references: [id], onDelete: SetNull)
+  rowsUrbox           Int                        @default(0)
+  rowsBaseReward      Int                        @default(0)
+  rowsInPeriod        Int                        @default(0)
+  matchedTransactions Int                        @default(0)
+  accountResolved     Int                        @default(0)
+  fallbackCompany     Int                        @default(0)
+  totalAmount         Decimal?                   @db.Decimal(18, 2)
+  summary             String?
+  error               String?
+  metadata            Json                       @default("{}")
+  startedAt           DateTime                   @default(now())
+  completedAt         DateTime?
+  sourceFiles         ReconciliationSourceFile[]
+  details             ReconciliationDetail[]
+  issues              ReconciliationIssue[]
+  outputs             ReconciliationOutput[]
+  createdAt           DateTime                   @default(now())
+  updatedAt           DateTime                   @updatedAt
+
+  @@unique([periodKey, attempt])
+  @@index([status, startedAt(sort: Desc)])
+  @@index([year, month, attempt])
+}
+
+model ReconciliationSourceFile {
+  id                String            @id @default(cuid())
+  runId             String
+  run               ReconciliationRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  kind              String
+  fileObjectId      String
+  fileObject        FileObject        @relation(fields: [fileObjectId], references: [id], onDelete: Restrict)
+  originalSheetName String?
+  rowCount          Int               @default(0)
+  checksum          String?
+  metadata          Json              @default("{}")
+  createdAt         DateTime          @default(now())
+
+  @@unique([runId, kind])
+  @@index([kind, createdAt])
+}
+
+model ReconciliationDetail {
+  id              String            @id @default(cuid())
+  runId           String
+  run             ReconciliationRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  sourceRow       Int
+  exchangeTime    DateTime?
+  program         String?
+  orderCode       String?
+  transactionCode String?
+  occurrence      Int               @default(1)
+  customerCode    String?
+  brand           String?
+  giftName        String?
+  category        String?
+  quantity        Int               @default(1)
+  value           Decimal?          @db.Decimal(18, 2)
+  employeeName    String?
+  rawEmployeeName String?
+  username        String?
+  company         String?
+  department      String?
+  employeeCode    String?
+  hrMatched       Boolean           @default(false)
+  accountMatched  Boolean           @default(false)
+  rawUrbox        Json              @default("{}")
+  rawBaseReward   Json              @default("{}")
+  createdAt       DateTime          @default(now())
+
+  @@unique([runId, sourceRow])
+  @@index([runId, company])
+  @@index([transactionCode, occurrence])
+}
+
+model ReconciliationIssue {
+  id              String            @id @default(cuid())
+  runId           String
+  run             ReconciliationRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  sourceRow       Int?
+  code            String
+  severity        String            @default("WARNING")
+  transactionCode String?
+  message         String
+  metadata        Json              @default("{}")
+  createdAt       DateTime          @default(now())
+
+  @@index([runId, severity])
+  @@index([code, createdAt])
+}
+
+model ReconciliationOutput {
+  id             String            @id @default(cuid())
+  runId          String
+  run            ReconciliationRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  periodKey      String
+  kind           String
+  fileObjectId   String?
+  fileObject     FileObject?       @relation(fields: [fileObjectId], references: [id], onDelete: SetNull)
+  driveFileId    String?
+  spreadsheetUrl String?
+  sheetName      String?
+  status         String            @default("PENDING")
+  metadata       Json              @default("{}")
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@unique([periodKey, kind])
+  @@index([runId, kind])
+}
+
+// File nhị phân nằm ở GCS/Drive; PostgreSQL chỉ giữ metadata, version, quyền và liên kết.
+model FileObject {
+  id                    String                     @id @default(cuid())
+  provider              String // GCS | GOOGLE_DRIVE
+  bucket                String?
+  objectKey             String
+  originalName          String
+  mimeType              String?
+  sizeBytes             BigInt?
+  sha256                String?
+  status                String                     @default("ACTIVE") // PROCESSING | ACTIVE | FAILED | ARCHIVED
+  ownerId               String?
+  sourceDriveId         String?                    @unique
+  migrationState        String                     @default("NATIVE") // NATIVE | LINKED_DRIVE | COPYING | MIGRATED | FAILED
+  currentVersion        Int                        @default(1)
+  metadata              Json                       @default("{}")
+  versions              FileVersion[]
+  links                 FileLink[]
+  accessGrants          FileAccessGrant[]
+  requestAttachments    RequestAttachment[]
+  reconciliationSources ReconciliationSourceFile[]
+  reconciliationOutputs ReconciliationOutput[]
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
+  archivedAt            DateTime?
+
+  @@unique([provider, bucket, objectKey])
+  @@index([ownerId, createdAt(sort: Desc)])
+  @@index([status, migrationState])
+  @@index([sha256])
+}
+
+model FileVersion {
+  id            String     @id @default(cuid())
+  fileObjectId  String
+  fileObject    FileObject @relation(fields: [fileObjectId], references: [id], onDelete: Cascade)
+  versionNumber Int
+  provider      String
+  bucket        String?
+  objectKey     String
+  mimeType      String?
+  sizeBytes     BigInt?
+  sha256        String?
+  status        String     @default("AVAILABLE") // PENDING | AVAILABLE | FAILED | QUARANTINED
+  uploadedById  String?
+  sourceDriveId String?
+  metadata      Json       @default("{}")
+  createdAt     DateTime   @default(now())
+
+  @@unique([fileObjectId, versionNumber])
+  @@unique([provider, bucket, objectKey])
+  @@index([sha256])
+}
+
+model FileLink {
+  id           String     @id @default(cuid())
+  fileObjectId String
+  fileObject   FileObject @relation(fields: [fileObjectId], references: [id], onDelete: Cascade)
+  entityType   String
+  entityId     String
+  purpose      String     @default("ATTACHMENT")
+  sortOrder    Int        @default(0)
+  metadata     Json       @default("{}")
+  createdAt    DateTime   @default(now())
+
+  @@unique([fileObjectId, entityType, entityId, purpose])
+  @@index([entityType, entityId, purpose])
+}
+
+model FileAccessGrant {
+  id            String     @id @default(cuid())
+  fileObjectId  String
+  fileObject    FileObject @relation(fields: [fileObjectId], references: [id], onDelete: Cascade)
+  principalType String // USER | ROLE | EMPLOYEE | COMPANY | PUBLIC_LINK
+  principalId   String
+  permission    String     @default("READ") // READ | WRITE | MANAGE
+  expiresAt     DateTime?
+  createdById   String?
+  createdAt     DateTime   @default(now())
+
+  @@unique([fileObjectId, principalType, principalId, permission])
+  @@index([principalType, principalId])
+}
+
+// ---------------------------------------------------------------------------
+// Kho KTS / RFID.
+//
+// Thay thế các tab 14_Cấu hình kho, 16_Kho KTS, 17_Lịch chạy dữ liệu và
+// 20_RFID Log của bản GAS. JSON từ máy quét được giữ nguyên trong rawPayload;
+// các cột chuẩn hoá bên dưới phục vụ đối chiếu, lọc và xác nhận nhanh trên
+// PostgreSQL.
+// ---------------------------------------------------------------------------
+
+model WarehouseProduct {
+  id              String                       @id @default(cuid())
+  sku             String                       @unique
+  barcode         String?
+  name            String
+  unit            String?
+  color           String?
+  size            String?
+  purchasePrice   Decimal?                     @db.Decimal(18, 2)
+  salePrice       Decimal?                     @db.Decimal(18, 2)
+  taxRate         Decimal?                     @db.Decimal(8, 4)
+  status          String                       @default("ACTIVE")
+  source          String?
+  note            String?
+  stockTvg        Int                          @default(0)
+  stockTvd        Int                          @default(0)
+  reservedTvg     Int                          @default(0)
+  reservedTvd     Int                          @default(0)
+  reorderAlert    Int?
+  inboundTodayTvg Int                          @default(0)
+  inboundTodayTvd Int                          @default(0)
+  legacySheetRow  Int?                         @unique
+  rawSource       Json                         @default("{}")
+  rfidTags        WarehouseRfidTag[]
+  inventoryItems  WarehouseInventoryScanItem[]
+  createdAt       DateTime                     @default(now())
+  updatedAt       DateTime                     @updatedAt
+
+  @@index([status, name])
+  @@index([barcode])
+}
+
+model WarehouseRfidTag {
+  id                      String                       @id @default(cuid())
+  recordKey               String?                      @unique
+  epc                     String                       @unique
+  productId               String?
+  product                 WarehouseProduct?            @relation(fields: [productId], references: [id], onDelete: SetNull)
+  productSku              String?
+  productName             String?
+  status                  String                       @default("Tồn kho")
+  issuanceStatus          String                       @default("ACTIVE")
+  issuedAt                DateTime?
+  issuedByName            String?
+  issuanceSessionKey      String?
+  issuedDeviceName        String?
+  cancelledAt             DateTime?
+  cancelledByName         String?
+  entryDate               DateTime?
+  exitDate                DateTime?
+  inboundSessionKey       String?
+  outboundSessionKey      String?
+  lastInventorySessionKey String?
+  lastScannedAt           DateTime?
+  sourceCompany           String?
+  outboundCompany         String?
+  eshopOrderCode          String?
+  trackingCode            String?
+  note                    String?
+  createdByName           String?
+  updatedByName           String?
+  legacySheetRow          Int?                         @unique
+  rawSource               Json                         @default("{}")
+  inventoryItems          WarehouseInventoryScanItem[]
+  issuanceEvents          WarehouseRfidIssuanceEvent[]
+  createdAt               DateTime                     @default(now())
+  updatedAt               DateTime                     @updatedAt
+
+  @@index([productId, status])
+  @@index([productSku])
+  @@index([issuanceStatus, issuedAt(sort: Desc)])
+  @@index([issuanceSessionKey])
+  @@index([lastInventorySessionKey])
+}
+
+model WarehouseRfidDefinitionSession {
+  id             String                       @id @default(cuid())
+  sessionKey     String                       @unique
+  mode           String                       @default("definition")
+  sku            String?
+  productName    String?
+  barcode        String?
+  issuanceStatus String                       @default("ACTIVE")
+  operatorName   String?
+  deviceName     String?
+  occurredAt     DateTime
+  expectedQty    Int                          @default(0)
+  requestedCount Int                          @default(0)
+  createdCount   Int                          @default(0)
+  skippedCount   Int                          @default(0)
+  errorCount     Int                          @default(0)
+  processStatus  String                       @default("PENDING")
+  message        String?
+  source         String                       @default("Android/RFID")
+  scanPower      Int?
+  scanRangeHint  String?
+  rawPayload     Json                         @default("{}")
+  events         WarehouseRfidIssuanceEvent[]
+  createdAt      DateTime                     @default(now())
+  updatedAt      DateTime                     @updatedAt
+
+  @@index([occurredAt(sort: Desc)])
+  @@index([issuanceStatus, occurredAt(sort: Desc)])
+  @@index([sku, occurredAt(sort: Desc)])
+}
+
+model WarehouseRfidIssuanceEvent {
+  id             String                         @id @default(cuid())
+  sessionId      String
+  session        WarehouseRfidDefinitionSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  rfidTagId      String?
+  rfidTag        WarehouseRfidTag?              @relation(fields: [rfidTagId], references: [id], onDelete: SetNull)
+  epc            String
+  sku            String?
+  productName    String?
+  barcode        String?
+  eventType      String                         @default("ISSUED")
+  issuanceStatus String                         @default("ACTIVE")
+  operatorName   String?
+  deviceName     String?
+  occurredAt     DateTime
+  message        String?
+  rawPayload     Json                           @default("{}")
+  createdAt      DateTime                       @default(now())
+
+  @@unique([sessionId, epc])
+  @@index([epc, occurredAt(sort: Desc)])
+  @@index([sku, occurredAt(sort: Desc)])
+  @@index([issuanceStatus, occurredAt(sort: Desc)])
+}
+
+model WarehouseInventorySession {
+  id                 String                          @id @default(cuid())
+  sessionKey         String                          @unique
+  scanDate           DateTime                        @db.Date
+  companyKey         String
+  inventoryType      String
+  area               String?
+  shelf              String?
+  source             String                          @default("Android/RFID")
+  operatorName       String?
+  deviceName         String?
+  processStatus      String                          @default("RECEIVED")
+  message            String?
+  requestedReadCount Int                             @default(0)
+  uniqueRfidCount    Int                             @default(0)
+  knownRfidCount     Int                             @default(0)
+  inStockRfidCount   Int                             @default(0)
+  duplicateRfidCount Int                             @default(0)
+  summary            Json                            @default("{}")
+  comparison         Json                            @default("[]")
+  unknownRfids       Json                            @default("[]")
+  wrongStatusRfids   Json                            @default("[]")
+  wrongCompanyRfids  Json                            @default("[]")
+  duplicateRfids     Json                            @default("[]")
+  statement          Json?
+  rawPayload         Json                            @default("{}")
+  legacyRecordId     String?
+  legacySheetRow     Int?
+  confirmedAt        DateTime?
+  confirmedById      String?
+  confirmedByName    String?
+  items              WarehouseInventoryScanItem[]
+  mergedSources      WarehouseInventorySessionLink[] @relation("WarehouseInventoryMergedSession")
+  mergedInto         WarehouseInventorySessionLink[] @relation("WarehouseInventorySourceSession")
+  createdAt          DateTime                        @default(now())
+  updatedAt          DateTime                        @updatedAt
+
+  @@index([scanDate(sort: Desc), companyKey])
+  @@index([processStatus, updatedAt(sort: Desc)])
+  @@index([legacyRecordId])
+}
+
+model WarehouseInventorySessionLink {
+  id              String                    @id @default(cuid())
+  mergedSessionId String
+  mergedSession   WarehouseInventorySession @relation("WarehouseInventoryMergedSession", fields: [mergedSessionId], references: [id], onDelete: Cascade)
+  sourceSessionId String
+  sourceSession   WarehouseInventorySession @relation("WarehouseInventorySourceSession", fields: [sourceSessionId], references: [id], onDelete: Cascade)
+  createdById     String?
+  createdByName   String?
+  createdAt       DateTime                  @default(now())
+
+  @@unique([mergedSessionId, sourceSessionId])
+  @@index([sourceSessionId])
+}
+
+model WarehouseInventoryScanItem {
+  id          String                    @id @default(cuid())
+  sessionId   String
+  session     WarehouseInventorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  epc         String
+  firstReadAt DateTime?
+  lastReadAt  DateTime?
+  readCount   Int                       @default(1)
+  itemStatus  String
+  message     String?
+  rfidTagId   String?
+  rfidTag     WarehouseRfidTag?         @relation(fields: [rfidTagId], references: [id], onDelete: SetNull)
+  productId   String?
+  product     WarehouseProduct?         @relation(fields: [productId], references: [id], onDelete: SetNull)
+  createdAt   DateTime                  @default(now())
+
+  @@unique([sessionId, epc])
+  @@index([epc])
+  @@index([productId, itemStatus])
+}
+
+model AirConditionerDevice {
+  id             String                  @id @default(cuid())
+  externalId     String?                 @unique
+  name           String
+  sourceName     String?
+  customName     String?
+  location       String?
+  locationId     String?
+  layoutLocation ElectricalLocation?     @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  rootType       String?
+  online         Boolean                 @default(true)
+  powerOn        Boolean                 @default(false)
+  status         String                  @default("ACTIVE")
+  capabilities   Json                    @default("{\"power\":true,\"temperature\":false,\"mode\":false}")
+  sortOrder      Int                     @default(100)
+  lastSeenAt     DateTime?
+  lastCommandAt  DateTime?
+  commands       AirConditionerCommand[]
+  createdAt      DateTime                @default(now())
+  updatedAt      DateTime                @updatedAt
+  archivedAt     DateTime?
+
+  @@index([status, sortOrder])
+  @@index([online, updatedAt(sort: Desc)])
+  @@index([locationId, sortOrder])
+}
+
+model ElectricalLocation {
+  id        String                 @id @default(cuid())
+  building  String                 @default("Trụ sở chính")
+  floor     String
+  room      String
+  area      String
+  sortOrder Int                    @default(100)
+  devices   AirConditionerDevice[]
+  createdAt DateTime               @default(now())
+  updatedAt DateTime               @updatedAt
+
+  @@unique([building, floor, room, area])
+  @@index([building, floor, room, sortOrder])
+}
+
+model AirConditionerCommand {
+  id          String               @id @default(cuid())
+  requestId   String               @unique
+  deviceId    String
+  device      AirConditionerDevice @relation(fields: [deviceId], references: [id], onDelete: Restrict)
+  command     String
+  mode        String
+  status      String               @default("PENDING")
+  actorId     String?
+  actorName   String?
+  response    Json?
+  error       String?
+  createdAt   DateTime             @default(now())
+  completedAt DateTime?
+
+  @@index([deviceId, createdAt(sort: Desc)])
+  @@index([actorId, createdAt(sort: Desc)])
+  @@index([status, createdAt(sort: Desc)])
+}
+
+// ---------------------------------------------------------------------------
+// Phân xưởng.
+//
+// Khôi phục 1:1 các module Cấu hình, Đặt hàng, Phân bổ, Kế hoạch, Duyệt,
+// Đề xuất, Báo cáo và nền dữ liệu Kiểm kê. PostgreSQL là nguồn sự thật;
+// payload/snapshot JSON chỉ giữ ngữ cảnh gốc và dữ liệu hiển thị bổ sung.
+// ---------------------------------------------------------------------------
+
+model WorkshopTeam {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  label     String
+  status    String   @default("Kích hoạt")
+  sortOrder Int      @default(100)
+  manager   String?
+  planners  Json     @default("[]")
+  approvers Json     @default("[]")
+  note      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status, sortOrder])
+}
+
+model WorkshopMaterial {
+  id               String   @id @default(cuid())
+  sku              String
+  skuName          String
+  skuQuantity      Decimal  @default(1) @db.Decimal(18, 4)
+  materialCode     String
+  materialName     String
+  materialUnit     String?
+  materialQuantity Decimal  @db.Decimal(18, 4)
+  source           String?
+  note             String?
+  rawSource        Json     @default("{}")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([sku, materialCode])
+  @@index([skuName, sku])
+  @@index([materialCode, materialName])
+}
+
+model WorkshopPlan {
+  id                 String              @id @default(cuid())
+  planCode           String              @unique
+  kind               String              @default("TEAM_PLAN")
+  workshopName       String              @default("Xưởng chính")
+  teamKey            String
+  teamName           String
+  weekKey            String
+  weekLabel          String
+  weekStart          DateTime?           @db.Date
+  weekEnd            DateTime?           @db.Date
+  version            Int                 @default(1)
+  status             String              @default("Chờ duyệt")
+  approvalStatus     String              @default("Chờ duyệt")
+  lineCount          Int                 @default(0)
+  totalDemand        Decimal             @default(0) @db.Decimal(18, 4)
+  totalPlanned       Decimal             @default(0) @db.Decimal(18, 4)
+  creatorId          String
+  creatorName        String
+  creatorEmployeeId  String?
+  creatorEmail       String?
+  reviewerId         String?
+  reviewerName       String?
+  reviewerEmployeeId String?
+  reviewerEmail      String?
+  reviewedAt         DateTime?
+  requestId          String?             @unique
+  sourceOrderPlanId  String?
+  sourceOrderPlan    WorkshopPlan?       @relation("WorkshopAllocationSource", fields: [sourceOrderPlanId], references: [id], onDelete: SetNull)
+  allocationPlans    WorkshopPlan[]      @relation("WorkshopAllocationSource")
+  payload            Json                @default("{}")
+  note               String?
+  archivedAt         DateTime?
+  lines              WorkshopPlanLine[]
+  audits             WorkshopPlanAudit[]
+  reports            WorkshopReport[]
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  @@unique([weekKey, teamKey, kind, version])
+  @@index([weekKey, kind, createdAt(sort: Desc)])
+  @@index([teamKey, approvalStatus, createdAt(sort: Desc)])
+  @@index([sourceOrderPlanId])
+}
+
+model WorkshopPlanLine {
+  id           String           @id @default(cuid())
+  lineCode     String           @unique
+  planId       String
+  plan         WorkshopPlan     @relation(fields: [planId], references: [id], onDelete: Cascade)
+  lineIndex    Int
+  type         String           @default("production")
+  productName  String
+  thickness    String?
+  size         String?
+  sku          String?
+  orderQty     Decimal          @default(0) @db.Decimal(18, 4)
+  receivedQty  Decimal          @default(0) @db.Decimal(18, 4)
+  warrantyType String?
+  days         Json             @default("[0,0,0,0,0,0,0]")
+  demand       Decimal          @default(0) @db.Decimal(18, 4)
+  plannedTotal Decimal          @default(0) @db.Decimal(18, 4)
+  note         String?
+  rawSource    Json             @default("{}")
+  reports      WorkshopReport[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@unique([planId, lineIndex])
+  @@index([planId, type])
+  @@index([sku])
+}
+
+model WorkshopPlanAudit {
+  id        String       @id @default(cuid())
+  planId    String
+  plan      WorkshopPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  action    String
+  actorId   String?
+  actorName String?
+  oldStatus String?
+  newStatus String?
+  note      String?
+  change    Json         @default("{}")
+  createdAt DateTime     @default(now())
+
+  @@index([planId, createdAt(sort: Desc)])
+}
+
+model WorkshopProposal {
+  id                String   @id @default(cuid())
+  proposalCode      String   @unique
+  tag               String   @default("Cập nhật KH tuần")
+  proposalKind      String   @default("Cập nhật kế hoạch theo ngày")
+  status            String   @default("Chờ duyệt")
+  weekKey           String
+  weekLabel         String
+  proposalDate      DateTime @db.Date
+  dayKey            String?
+  teamKey           String
+  teamName          String
+  planIds           Json     @default("[]")
+  sourceVersions    Json     @default("[]")
+  sourceLineCount   Int      @default(0)
+  lineCount         Int      @default(0)
+  totalChange       Decimal  @default(0) @db.Decimal(18, 4)
+  affectedTeams     Json     @default("[]")
+  summary           String?
+  lines             Json     @default("[]")
+  creatorId         String
+  creatorName       String
+  creatorEmployeeId String?
+  creatorEmail      String?
+  note              String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([weekKey, teamKey, proposalDate, createdAt(sort: Desc)])
+  @@index([status, createdAt(sort: Desc)])
+}
+
+model WorkshopReport {
+  id                 String           @id @default(cuid())
+  reportCode         String           @unique
+  reportKey          String           @unique
+  planId             String
+  plan               WorkshopPlan     @relation(fields: [planId], references: [id], onDelete: Cascade)
+  lineId             String
+  line               WorkshopPlanLine @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  reportDate         DateTime         @db.Date
+  dayKey             String?
+  plannedToday       Decimal          @default(0) @db.Decimal(18, 4)
+  actualQty          Decimal          @default(0) @db.Decimal(18, 4)
+  defectLightQty     Decimal          @default(0) @db.Decimal(18, 4)
+  defectMediumQty    Decimal          @default(0) @db.Decimal(18, 4)
+  defectHeavyQty     Decimal          @default(0) @db.Decimal(18, 4)
+  note               String?
+  reporterId         String
+  reporterName       String
+  reporterEmployeeId String?
+  reporterEmail      String?
+  snapshot           Json             @default("{}")
+  reportedAt         DateTime         @default(now())
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@unique([lineId, reportDate])
+  @@index([planId, reportDate])
+  @@index([reporterId, reportDate(sort: Desc)])
+}
+
+model WorkshopInventorySession {
+  id            String                  @id @default(cuid())
+  sessionCode   String                  @unique
+  inventoryDate DateTime                @db.Date
+  workshopName  String                  @default("Xưởng chính")
+  status        String                  @default("DRAFT")
+  operatorId    String
+  operatorName  String
+  summary       Json                    @default("{}")
+  note          String?
+  items         WorkshopInventoryItem[]
+  completedAt   DateTime?
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@index([inventoryDate(sort: Desc), status])
+}
+
+model WorkshopInventoryItem {
+  id           String                   @id @default(cuid())
+  sessionId    String
+  session      WorkshopInventorySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  materialCode String
+  materialName String?
+  unit         String?
+  expectedQty  Decimal                  @default(0) @db.Decimal(18, 4)
+  countedQty   Decimal                  @default(0) @db.Decimal(18, 4)
+  difference   Decimal                  @default(0) @db.Decimal(18, 4)
+  note         String?
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+
+  @@unique([sessionId, materialCode])
+  @@index([materialCode])
+}

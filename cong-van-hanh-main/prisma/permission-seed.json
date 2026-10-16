@@ -1,0 +1,149 @@
+{
+  "source": {
+    "spreadsheetId": "1_aDstrpRuxLuaEKHTuuWuL3ybyBvCPVcyFMouQxVjyg",
+    "roleSheet": "99_Cấu hình quyền",
+    "assignmentSheet": "99_Phân quyền hệ thống"
+  },
+  "roles": [
+    {
+      "rowNumber": 2,
+      "key": "ahc",
+      "name": "Admin Hành chính",
+      "description": "Quyền được dùng cho Admin của team Dịch vụ Nội bộ",
+      "rank": 1,
+      "groupKeys": [
+        "admin-management",
+        "admin-execution",
+        "admin-config",
+        "nguoi-thuan-viet-orders",
+        "nguoi-thuan-viet-legal",
+        "nguoi-thuan-viet-asset",
+        "nguoi-thuan-viet-admin",
+        "nguoi-thuan-viet-utilities"
+      ],
+      "moduleKeys": [
+        "cat-chat",
+        "order-management",
+        "reconciliation",
+        "admin-tools",
+        "config",
+        "asset-setup",
+        "app-setup",
+        "evaluation-config",
+        "template-management",
+        "review-config",
+        "my-orders",
+        "legal-info",
+        "review-contract",
+        "document-seal",
+        "document-archive",
+        "authorization-letter",
+        "asset-allocation",
+        "repair-request",
+        "business-trip",
+        "evaluation",
+        "send-mail",
+        "support-request",
+        "location-map",
+        "templates",
+        "todo",
+        "support-tools"
+      ],
+      "includeDefaultEmployeeAccess": true,
+      "isActive": true,
+      "isCore": false,
+      "moduleActionMap": {
+        "review-config": ["view", "edit", "delete"],
+        "repair-request": ["view", "edit", "delete"],
+        "reconciliation": ["view", "edit", "delete"],
+        "support-request": ["view", "edit", "delete"],
+        "location-map": ["view", "edit", "delete"],
+        "config": ["view", "edit", "delete"],
+        "template-management": ["view", "edit", "delete"],
+        "cat-chat": ["view", "edit", "delete"],
+        "asset-setup": ["view", "edit", "delete"],
+        "legal-info": ["view", "edit", "delete"],
+        "order-management": ["view", "edit", "delete"],
+        "evaluation-config": ["view", "edit", "delete"],
+        "review-contract": ["view", "edit", "delete"],
+        "authorization-letter": ["view", "edit", "delete"],
+        "business-trip": ["view", "edit", "delete"],
+        "document-archive": ["view", "edit", "delete"],
+        "todo": ["view", "edit", "delete"],
+        "support-tools": ["view", "edit", "delete"],
+        "asset-allocation": ["view", "edit", "delete"],
+        "evaluation": ["view", "edit", "delete"],
+        "send-mail": ["view", "edit", "delete"],
+        "document-seal": ["view", "edit", "delete"],
+        "templates": ["view", "edit", "delete"],
+        "admin-tools": ["view", "edit", "delete"],
+        "app-setup": ["view", "edit", "delete"],
+        "my-orders": ["view", "edit", "delete"]
+      }
+    },
+    {
+      "rowNumber": 3,
+      "key": "admin",
+      "name": "Admin",
+      "description": "Quyền lõi của hệ thống.",
+      "rank": 20,
+      "groupKeys": ["admin"],
+      "moduleKeys": [],
+      "includeDefaultEmployeeAccess": true,
+      "isActive": true,
+      "isCore": true,
+      "moduleActionMap": {}
+    }
+  ],
+  "assignments": [
+    {
+      "rowNumber": 2,
+      "employeeCode": "2411301",
+      "roleKey": "super-admin",
+      "requiresPassword": true,
+      "legacyPasswordPresent": true
+    },
+    {
+      "rowNumber": 3,
+      "employeeCode": "2509348",
+      "roleKey": "admin",
+      "requiresPassword": true,
+      "legacyPasswordPresent": true
+    },
+    {
+      "rowNumber": 4,
+      "employeeCode": "1810002",
+      "roleKey": "super-admin",
+      "requiresPassword": true,
+      "legacyPasswordPresent": true
+    },
+    {
+      "rowNumber": 5,
+      "employeeCode": "51",
+      "roleKey": "ahc",
+      "requiresPassword": true,
+      "legacyPasswordPresent": true
+    },
+    {
+      "rowNumber": 6,
+      "employeeCode": "1810001",
+      "roleKey": "super-admin",
+      "requiresPassword": true,
+      "legacyPasswordPresent": true
+    },
+    {
+      "rowNumber": 7,
+      "employeeCode": "KC1",
+      "roleKey": "super-admin",
+      "requiresPassword": true,
+      "legacyPasswordPresent": false
+    },
+    {
+      "rowNumber": 8,
+      "employeeCode": "2409289",
+      "roleKey": "ahc",
+      "requiresPassword": true,
+      "legacyPasswordPresent": true
+    }
+  ]
+}
